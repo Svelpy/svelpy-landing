@@ -41,7 +41,9 @@ import GitHubIcon from "./icons/GitHubIcon.astro";
 
     <div class="max-w-4xl mx-auto">
       <!-- Cards de contacto -->
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+      <div
+        class="flex justify-center items-center md:flex-row flex-col gap-6 mb-12"
+      >
         <a
           href={`mailto:${companyInfo.email}`}
           id="contact-email"

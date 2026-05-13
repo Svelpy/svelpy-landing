@@ -35,11 +35,9 @@ import { companyInfo, companyValues } from "../data/company";
       </p>
     </div>
 
-    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-12 items-start">
+    <div class="flex flex-col md:flex-row justify-center items-center gap-12">
       <!-- Misión -->
-      <div
-        class="transition-all duration-300 rotate-1 p-6 shadow-2xl drop-shadow-lg"
-      >
+      <div class="rotate-1 p-6 bg-light-background shadow-2xl drop-shadow-lg">
         <h3 class="text-2xl font-semibold mb-4 text-light-primary">
           🎯 Misión
         </h3>
@@ -51,9 +49,7 @@ import { companyInfo, companyValues } from "../data/company";
       </div>
 
       <!-- Visión -->
-      <div
-        class="transition-all duration-300 -rotate-2 p-6 shadow-2xl drop-shadow-lg"
-      >
+      <div class="-rotate-2 p-6 bg-light-background shadow-2xl drop-shadow-lg">
         <h3 class="text-2xl font-semibold mb-4 text-light-primary">
           🚀 Visión
         </h3>
@@ -65,50 +61,31 @@ import { companyInfo, companyValues } from "../data/company";
       </div>
 
       <!-- Valores -->
-      <div class="transition-all duration-300 p-6 shadow-2xl drop-shadow-lg">
-        <div class="text-center">
-          <h3 class="text-2xl font-semibold mb-4 text-light-primary">
-            💎 Valores
-          </h3>
-          <ul class="text-light-text-body space-y-2 text-left">
-            {
-              companyValues.map((value) => (
-                <li>
-                  {value.emoji} <strong>{value.title}</strong>
-                  <span class="block text-sm ml-5 text-light-text-body/80">
-                    {value.description}
-                  </span>
-                </li>
-              ))
-            }
-          </ul>
-        </div>
-      </div>
+    </div>
+  </div>
+
+  <!-- Stats de la empresa -->
+  <div class="flex justify-center gap-6 mt-16 flex-wrap">
+    <div
+      class="text-center p-6 bg-light-background shadow-2xl drop-shadow-lg -rotate-1"
+    >
+      <div class="text-4xl font-bold text-light-primary mb-2">+6</div>
+      <div class="text-light-text-body text-sm">Proyectos entregados</div>
+    </div>
+    <div
+      class="text-center p-6 bg-light-background shadow-2xl drop-shadow-lg rotate-1"
+    >
+      <div class="text-4xl font-bold text-light-secondary mb-2">100%</div>
+      <div class="text-light-text-body text-sm">Clientes satisfechos</div>
     </div>
 
-    <!-- Stats de la empresa -->
-    <div class="flex justify-center gap-6 mt-16 flex-wrap">
-      <div
-        class="text-center p-6 bg-light-background shadow-2xl drop-shadow-lg -rotate-1"
-      >
-        <div class="text-4xl font-bold text-light-primary mb-2">+6</div>
-        <div class="text-light-text-body text-sm">Proyectos entregados</div>
+    <div
+      class="text-center p-6 bg-light-background shadow-2xl drop-shadow-lg rotate-2"
+    >
+      <div class="text-4xl font-bold text-light-primary mb-2">
+        {companyInfo.foundedYear}
       </div>
-      <div
-        class="text-center p-6 bg-light-background shadow-2xl drop-shadow-lg rotate-1"
-      >
-        <div class="text-4xl font-bold text-light-secondary mb-2">100%</div>
-        <div class="text-light-text-body text-sm">Clientes satisfechos</div>
-      </div>
-
-      <div
-        class="text-center p-6 bg-light-background shadow-2xl drop-shadow-lg rotate-2"
-      >
-        <div class="text-4xl font-bold text-light-primary mb-2">
-          {companyInfo.foundedYear}
-        </div>
-        <div class="text-light-text-body text-sm">Fundada en Bolivia</div>
-      </div>
+      <div class="text-light-text-body text-sm">Fundada en Bolivia</div>
     </div>
   </div>
 </section>
