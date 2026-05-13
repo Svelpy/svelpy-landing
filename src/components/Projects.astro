@@ -1,0 +1,43 @@
+---
+// Projects.astro — Sección "Servicios"
+import { services } from "../data/company";
+import ProjectCard from "./ProjectCard.astro";
+---
+
+<section id="servicios" class="py-20 px-6">
+  <div class="container mx-auto">
+    <div class="text-center mb-16">
+      <div class="inline-block">
+        <div class="flex items-center gap-3 mb-4">
+          <div
+            class="w-12 h-0.5 bg-linear-to-r from-transparent to-light-accent"
+          >
+          </div>
+          <span
+            class="text-light-accent font-mono text-sm uppercase tracking-widest"
+          >
+            02. Servicios
+          </span>
+          <div
+            class="w-12 h-0.5 bg-linear-to-l from-transparent to-light-accent"
+          >
+          </div>
+        </div>
+      </div>
+
+      <h2
+        class="text-4xl md:text-5xl block font-bold bg-linear-to-r from-light-primary to-light-secondary bg-clip-text text-transparent mb-6"
+      >
+        Nuestros Servicios
+      </h2>
+      <p class="text-xl text-light-text-body max-w-2xl mx-auto leading-relaxed">
+        Construimos exactamente lo que tu negocio necesita, con el stack
+        tecnológico más adecuado para cada proyecto.
+      </p>
+    </div>
+
+    <div class="grid md:grid-cols-2 gap-8">
+      {services.map((service) => <ProjectCard project={service} />)}
+    </div>
+  </div>
+</section>

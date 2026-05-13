@@ -1,0 +1,90 @@
+---
+// cookies.astro — Política de Cookies
+import LegalLayout from "../layouts/LegalLayout.astro";
+import { cookiesPolicy } from "../data/legal";
+---
+
+<LegalLayout
+  title={cookiesPolicy.title}
+  description="Política de cookies de Svelpy. Conoce qué cookies usamos y cómo puedes gestionarlas."
+>
+  <!-- Encabezado -->
+  <div class="mb-12">
+    <h1 class="text-4xl md:text-5xl font-bold text-light-primary mb-4">
+      {cookiesPolicy.title}
+    </h1>
+    <p class="text-sm text-light-text-body font-mono bg-light-background px-4 py-2 inline-block border-l-4 border-light-secondary">
+      Última actualización: {cookiesPolicy.lastUpdated}
+    </p>
+    <p class="text-xl text-light-text-body mt-6 leading-relaxed max-w-3xl">
+      {cookiesPolicy.intro}
+    </p>
+  </div>
+
+  <!-- Tabla resumen rápida -->
+  <div class="mb-10 bg-light-background shadow-lg p-6">
+    <h2 class="text-xl font-bold text-light-primary mb-4">Resumen rápido</h2>
+    <div class="overflow-x-auto">
+      <table class="w-full text-sm text-light-text-body">
+        <thead>
+          <tr class="border-b border-light-primary/20">
+            <th class="text-left py-2 pr-4 text-light-primary">Tipo</th>
+            <th class="text-left py-2 pr-4 text-light-primary">Propósito</th>
+            <th class="text-left py-2 text-light-primary">Duración</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-light-primary/10">
+          <tr>
+            <td class="py-2 pr-4 font-mono text-light-secondary">Esenciales</td>
+            <td class="py-2 pr-4">Funcionamiento del sitio</td>
+            <td class="py-2">Sesión</td>
+          </tr>
+          <tr>
+            <td class="py-2 pr-4 font-mono text-light-secondary">Análisis</td>
+            <td class="py-2 pr-4">Google Analytics (anónimo)</td>
+            <td class="py-2">Hasta 2 años</td>
+          </tr>
+          <tr>
+            <td class="py-2 pr-4 font-mono text-light-secondary">Preferencias</td>
+            <td class="py-2 pr-4">Configuración del usuario</td>
+            <td class="py-2">30 días</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Contenido por secciones -->
+  <div class="space-y-10">
+    {
+      cookiesPolicy.sections.map((section) => (
+        <div class="bg-light-background shadow-lg p-6 hover:shadow-xl transition-shadow duration-300">
+          <h2 class="text-xl font-bold text-light-primary mb-4 pb-2 border-b border-light-primary/20">
+            {section.title}
+          </h2>
+          <ul class="space-y-3">
+            {section.content.map((item) => (
+              <li class="flex items-start gap-3 text-light-text-body leading-relaxed">
+                <span class="text-light-secondary mt-1 flex-shrink-0">▸</span>
+                <span>{item}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))
+    }
+  </div>
+
+  <!-- CTA -->
+  <div class="mt-12 p-6 bg-light-primary text-center">
+    <p class="text-light-white mb-4">
+      ¿Preguntas sobre nuestras cookies?
+    </p>
+    <a
+      href="mailto:hola@svelpy.dev?subject=Consulta%20Política%20de%20Cookies"
+      class="inline-block px-8 py-3 bg-light-white text-light-primary font-bold hover:shadow-lg transition-all duration-300 hover:scale-105"
+    >
+      Contáctanos
+    </a>
+  </div>
+</LegalLayout>

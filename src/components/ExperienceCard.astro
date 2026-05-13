@@ -1,0 +1,86 @@
+---
+// ExperienceCard.astro — Card de caso de éxito
+export interface Props {
+  experience: {
+    id: string;
+    title: string;
+    client: string;
+    period: string;
+    description: string;
+    results: string[];
+    technologies: string[];
+    icon: string;
+  };
+}
+
+const { experience } = Astro.props;
+---
+
+<div class="p-6 bg-light-background shadow-2xl drop-shadow-lg hover:-translate-y-1 transition-all duration-300">
+  <div class="flex items-start gap-4 mb-6">
+    <div class="text-3xl transition-transform duration-300 hover:scale-110">
+      {experience.icon}
+    </div>
+    <div class="flex-1 min-w-0">
+      <h3 class="text-xl font-bold text-light-primary mb-2">
+        {experience.title}
+      </h3>
+      <div class="flex flex-col sm:flex-row sm:items-center gap-2 text-sm">
+        <span class="text-light-secondary font-medium">
+          📍 {experience.client}
+        </span>
+        <span class="text-light-text-body font-mono">
+          {experience.period}
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Descripción -->
+  <p class="text-light-text-body mb-6 leading-relaxed">
+    {experience.description}
+  </p>
+
+  <!-- Resultados obtenidos -->
+  <div class="mb-6">
+    <h4
+      class="text-sm font-semibold text-light-primary mb-3 uppercase tracking-wide"
+    >
+      Resultados
+    </h4>
+    <ul class="space-y-2">
+      {
+        experience.results.map((result) => (
+          <li class="flex items-start gap-3 text-light-text-body text-sm">
+            <span class="text-light-secondary mt-0.5">✓</span>
+            <span>{result}</span>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+
+  <!-- Tecnologías usadas -->
+  <div>
+    <h4
+      class="text-sm font-semibold text-light-primary mb-3 uppercase tracking-wide"
+    >
+      Tecnologías
+    </h4>
+    <div class="flex flex-wrap gap-2">
+      {
+        experience.technologies.map((tech) => (
+          <span class="px-3 py-1 text-light-accent bg-light-background drop-shadow-lg text-sm border border-light-accent/30">
+            {tech}
+          </span>
+        ))
+      }
+    </div>
+  </div>
+</div>
+
+<style>
+  div:hover .text-3xl {
+    transform: scale(1.1);
+  }
+</style>

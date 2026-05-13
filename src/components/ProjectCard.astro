@@ -1,0 +1,32 @@
+---
+// ProjectCard.astro — Card de servicio
+import type { Service } from "../data/company";
+
+interface Props {
+  project: Service;
+}
+
+const { project } = Astro.props;
+---
+
+<div class="p-6 shadow-2xl drop-shadow-lg transition-all duration-300">
+  <div class="flex items-start gap-4 mb-4">
+    <span class="text-4xl">{project.icon}</span>
+    <div>
+      <h3 class="text-xl font-semibold mb-1 text-light-primary">
+        {project.title}
+      </h3>
+    </div>
+  </div>
+
+  <p class="text-light-text-body mb-4 leading-relaxed">{project.description}</p>
+
+  <div class="mt-6">
+    <a
+      href="#contacto"
+      class="inline-block px-6 py-2 bg-light-primary text-light-white text-sm hover:shadow-lg hover:shadow-light-primary transition-all duration-300"
+    >
+      Hablemos
+    </a>
+  </div>
+</div>

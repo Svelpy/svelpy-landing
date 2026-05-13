@@ -1,0 +1,97 @@
+---
+// Hero.astro
+import { companyInfo } from "../data/company";
+import MailIcon from "./icons/MailIcon.astro";
+import LinkedInIcon from "./icons/LinkedInIcon.astro";
+import GitHubIcon from "./icons/GitHubIcon.astro";
+import WhatsappIcon from "./icons/WhatsappIcon.astro";
+---
+
+<section
+  id="hero"
+  class="relative flex items-center justify-center px-6 pt-20 min-h-screen"
+>
+  <div class="text-center z-10">
+    <div class="mb-8 animate-fade-in">
+      <!-- Logo de Svelpy -->
+      <div
+        class="w-64 h-64 mx-auto flex items-center justify-center animate-float flex-col mb-10"
+      >
+        <img src="/logo.png" alt="Svelpy Logo" class="size-64" />
+        <h1
+          class="text-5xl md:text-7xl font-bold mb-4 text-[#4CA9A1] font-mono"
+        >
+          {companyInfo.name}
+        </h1>
+      </div>
+
+      <!-- Nombre de la empresa -->
+
+      <!-- Tagline -->
+      <h2 class="text-2xl md:text-3xl font-mono text-light-text-body mb-4">
+        {companyInfo.tagline}
+      </h2>
+
+      <!-- Descripción -->
+      <p
+        class="text-xl md:text-2xl text-light-text-body mb-8 max-w-2xl mx-auto leading-relaxed"
+      >
+        {companyInfo.description}
+      </p>
+
+      <!-- Badges de confianza -->
+      <div class="flex flex-wrap justify-center gap-3 mb-10">
+        <span
+          class="px-4 py-2 bg-light-primary text-light-white text-sm font-mono"
+        >
+          ⚡ Alta Performance
+        </span>
+
+        <span
+          class="px-4 py-2 bg-light-accent text-light-white text-sm font-mono"
+        >
+          🇧🇴 Bolivia
+        </span>
+      </div>
+
+      <!-- CTAs -->
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a
+          href="#servicios"
+          id="cta-servicios"
+          class="px-8 py-3 bg-light-primary hover:shadow-lg hover:shadow-light-primary transition-all duration-300 transform hover:scale-105 text-light-white font-medium"
+        >
+          Ver Servicios
+        </a>
+        <a
+          href="#contacto"
+          id="cta-contacto"
+          class="px-8 py-3 border border-light-primary text-light-primary hover:border-light-secondary hover:text-light-secondary transform hover:scale-105 transition-all duration-300 font-medium"
+        >
+          Contáctanos
+        </a>
+      </div>
+    </div>
+
+    <!-- Social / Contacto links -->
+    <div
+      class="flex justify-center space-x-6 text-2xl animate-fade-in"
+      style="animation-delay: 0.5s;"
+    >
+      <a
+        href={`mailto:${companyInfo.email}`}
+        aria-label="Email"
+        class="hover:text-light-secondary transition-colors"
+        ><MailIcon class="size-8" /></a
+      >
+      <a
+        href={`https://wa.me/${companyInfo.whatsapp?.replace(/\D/g, "")}`}
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="WhatsApp"
+        class="hover:text-light-secondary transition-colors"
+        ><WhatsappIcon class="size-8" /></a
+      >
+    </div>
+  </div>
+</section>

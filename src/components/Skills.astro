@@ -1,0 +1,66 @@
+---
+// Skills.astro — Sección "Stack Tecnológico"
+import SkillsCard from "./SkillsCard.astro";
+import { techStack } from "../data/company";
+---
+
+<section id="stack" class="py-20 px-6">
+  <div class="container mx-auto">
+    <div class="text-center mb-16">
+      <div class="inline-block">
+        <div class="flex items-center gap-3 mb-4">
+          <div
+            class="w-12 h-0.5 bg-gradient-to-r from-transparent to-light-accent"
+          >
+          </div>
+          <span
+            class="text-light-accent font-mono text-sm uppercase tracking-widest"
+          >
+            04. Stack Tecnológico
+          </span>
+          <div
+            class="w-12 h-0.5 bg-gradient-to-l from-transparent to-light-accent"
+          >
+          </div>
+        </div>
+      </div>
+
+      <h2
+        class="text-4xl md:text-5xl block font-bold bg-gradient-to-r from-light-primary to-light-secondary bg-clip-text text-transparent mb-6"
+      >
+        Nuestro Stack
+      </h2>
+      <p class="text-xl text-light-text-body max-w-2xl mx-auto leading-relaxed">
+        Elegimos las herramientas correctas para cada proyecto. Sin dogmas
+        tecnológicos, solo resultados.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
+      {techStack.map((stack, index) => <SkillsCard skill={stack} index={index} />)}
+    </div>
+  </div>
+</section>
+
+<style>
+  .skill-card {
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeInUp 0.8s ease-out forwards;
+  }
+
+  @keyframes fadeInUp {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .skill-card {
+      animation: none;
+      opacity: 1;
+      transform: none;
+    }
+  }
+</style>

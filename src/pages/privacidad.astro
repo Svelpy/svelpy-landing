@@ -1,0 +1,57 @@
+---
+// privacidad.astro — Política de Privacidad
+import LegalLayout from "../layouts/LegalLayout.astro";
+import { privacyPolicy } from "../data/legal";
+---
+
+<LegalLayout
+  title={privacyPolicy.title}
+  description="Política de privacidad de Svelpy. Conoce cómo recopilamos, usamos y protegemos tus datos personales."
+>
+  <!-- Encabezado -->
+  <div class="mb-12">
+    <h1 class="text-4xl md:text-5xl font-bold text-light-primary mb-4">
+      {privacyPolicy.title}
+    </h1>
+    <p class="text-sm text-light-text-body font-mono bg-light-background px-4 py-2 inline-block border-l-4 border-light-accent">
+      Última actualización: {privacyPolicy.lastUpdated}
+    </p>
+    <p class="text-xl text-light-text-body mt-6 leading-relaxed max-w-3xl">
+      {privacyPolicy.intro}
+    </p>
+  </div>
+
+  <!-- Contenido por secciones -->
+  <div class="space-y-10">
+    {
+      privacyPolicy.sections.map((section) => (
+        <div class="bg-light-background shadow-lg p-6 hover:shadow-xl transition-shadow duration-300">
+          <h2 class="text-xl font-bold text-light-primary mb-4 pb-2 border-b border-light-primary/20">
+            {section.title}
+          </h2>
+          <ul class="space-y-3">
+            {section.content.map((item) => (
+              <li class="flex items-start gap-3 text-light-text-body leading-relaxed">
+                <span class="text-light-secondary mt-1 flex-shrink-0">▸</span>
+                <span>{item}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))
+    }
+  </div>
+
+  <!-- CTA de contacto -->
+  <div class="mt-12 p-6 bg-light-primary text-center">
+    <p class="text-light-white mb-4">
+      ¿Tienes preguntas sobre tu privacidad?
+    </p>
+    <a
+      href="mailto:hola@svelpy.dev?subject=Consulta%20de%20Privacidad"
+      class="inline-block px-8 py-3 bg-light-white text-light-primary font-bold hover:shadow-lg transition-all duration-300 hover:scale-105"
+    >
+      Contactar a Svelpy
+    </a>
+  </div>
+</LegalLayout>

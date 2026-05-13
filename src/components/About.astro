@@ -1,0 +1,114 @@
+---
+// About.astro — Sección "Nosotros"
+import { companyInfo, companyValues } from "../data/company";
+---
+
+<section id="nosotros" class="py-20 px-6">
+  <div class="container mx-auto">
+    <div class="text-center mb-16">
+      <div class="inline-block">
+        <div class="flex items-center gap-3 mb-4">
+          <div
+            class="w-12 h-0.5 bg-linear-to-r from-transparent to-light-accent"
+          >
+          </div>
+          <span
+            class="text-light-accent font-mono text-sm uppercase tracking-widest"
+          >
+            01. Nosotros
+          </span>
+          <div
+            class="w-12 h-0.5 bg-linear-to-l from-transparent to-light-accent"
+          >
+          </div>
+        </div>
+      </div>
+
+      <h2
+        class="text-4xl md:text-5xl block font-bold bg-linear-to-r from-light-primary to-light-secondary bg-clip-text text-transparent mb-6"
+      >
+        Quiénes Somos
+      </h2>
+      <p class="text-xl text-light-text-body max-w-2xl mx-auto leading-relaxed">
+        Somos un equipo apasionado por la tecnología, comprometido con entregar
+        software que realmente funciona y que tu negocio necesita.
+      </p>
+    </div>
+
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-12 items-start">
+      <!-- Misión -->
+      <div
+        class="transition-all duration-300 rotate-1 p-6 shadow-2xl drop-shadow-lg"
+      >
+        <h3 class="text-2xl font-semibold mb-4 text-light-primary">
+          🎯 Misión
+        </h3>
+        <p class="text-light-text-body">
+          Construir soluciones de software de alta calidad que impulsen el
+          crecimiento de negocios latinoamericanos, combinando tecnología de
+          vanguardia con una ejecución eficiente y comunicación transparente.
+        </p>
+      </div>
+
+      <!-- Visión -->
+      <div
+        class="transition-all duration-300 -rotate-2 p-6 shadow-2xl drop-shadow-lg"
+      >
+        <h3 class="text-2xl font-semibold mb-4 text-light-primary">
+          🚀 Visión
+        </h3>
+        <p class="text-light-text-body">
+          Ser la empresa de desarrollo web de referencia en Bolivia y
+          Latinoamérica, reconocida por la velocidad de entrega, la calidad del
+          código y el impacto real en los negocios de nuestros clientes.
+        </p>
+      </div>
+
+      <!-- Valores -->
+      <div class="transition-all duration-300 p-6 shadow-2xl drop-shadow-lg">
+        <div class="text-center">
+          <h3 class="text-2xl font-semibold mb-4 text-light-primary">
+            💎 Valores
+          </h3>
+          <ul class="text-light-text-body space-y-2 text-left">
+            {
+              companyValues.map((value) => (
+                <li>
+                  {value.emoji} <strong>{value.title}</strong>
+                  <span class="block text-sm ml-5 text-light-text-body/80">
+                    {value.description}
+                  </span>
+                </li>
+              ))
+            }
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Stats de la empresa -->
+    <div class="flex justify-center gap-6 mt-16 flex-wrap">
+      <div
+        class="text-center p-6 bg-light-background shadow-2xl drop-shadow-lg -rotate-1"
+      >
+        <div class="text-4xl font-bold text-light-primary mb-2">+6</div>
+        <div class="text-light-text-body text-sm">Proyectos entregados</div>
+      </div>
+      <div
+        class="text-center p-6 bg-light-background shadow-2xl drop-shadow-lg rotate-1"
+      >
+        <div class="text-4xl font-bold text-light-secondary mb-2">100%</div>
+        <div class="text-light-text-body text-sm">Clientes satisfechos</div>
+      </div>
+
+      <div
+        class="text-center p-6 bg-light-background shadow-2xl drop-shadow-lg rotate-2"
+      >
+        <div class="text-4xl font-bold text-light-primary mb-2">
+          {companyInfo.foundedYear}
+        </div>
+        <div class="text-light-text-body text-sm">Fundada en Bolivia</div>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,23 +1,62 @@
-<!doctype html>
-<html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro Basics</title>
-	</head>
-	<body>
-		<slot />
-	</body>
-</html>
+---
+//Layout.astro
+import Footer from "../components/Footer.astro";
+import "../styles/global.css";
 
-<style>
-	html,
-	body {
-		margin: 0;
-		width: 100%;
-		height: 100%;
-	}
-</style>
+export interface Props {
+  title: string;
+  description?: string;
+}
+
+const {
+  title,
+  description = "Svelpy — Empresa de desarrollo de software especializada en construir aplicaciones web rápidas, escalables y elegantes. Transformamos ideas en productos digitales.",
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content={description} />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="index, follow" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Svelpy" />
+    <link rel="icon" type="image/svg+xml" href="/logo.png" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Freckle+Face&display=swap"
+      rel="stylesheet"
+    />
+    <title>{title}</title>
+    <style>
+      .bg-grid-pattern {
+        background-image:
+          linear-gradient(
+            to right,
+            var(--color-light-primary) 1px,
+            transparent 1px
+          ),
+          linear-gradient(
+            to bottom,
+            var(--color-light-primary),
+            1px,
+            transparent 1px
+          );
+        background-size: 20px 20px;
+      }
+    </style>
+  </head>
+  <body class="bg-light-background overflow-x-hidden">
+    <!-- Fondo de hoja cuadriculada -->
+    <div class="fixed inset-0 -z-10">
+      <!-- Cuadrícula principal -->
+      <div class="absolute inset-0 bg-grid-pattern opacity-20"></div>
+    </div>
+
+    <slot />
+    <Footer />
+  </body>
+</html>

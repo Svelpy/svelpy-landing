@@ -1,0 +1,137 @@
+@import "tailwindcss";
+
+@theme {
+  --breakpoint-*: initial;
+  --breakpoint-sm: 640px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 1024px;
+  --breakpoint-xl: 1280px;
+  --breakpoint-2xl: 1536px;
+
+  --color-light-primary: #1a233b; /*Headers, barras de navegacion, footer, titulos h1 y h2, iconos, border de tarjetas */
+  --color-light-secondary: #32998a; /* Botones, enlaces, iconos, */
+  --color-light-background: #f0f2f5; /* fondo principal */
+  --color-light-accent: #e76f51; /* destacados */
+  --color-light-text-body: #333333; /* texto parrafo, titulos secundarios */
+  --color-light-white: #ffffff; /* Blanco Puro */
+
+  --color-dark-primary: #1a233b; /*Headers, barras de navegacion, footer, titulos h1 y h2, iconos, border de tarjetas */
+  --color-dark-secondary: #32998a; /* Botones, enlaces, iconos, */
+  --color-dark-background: #0a0a0a; /* fondo principal */
+  --color-dark-accent: #e76f51; /* destacados */
+  --color-dark-text-body: #333333; /* texto parrafo, titulos secundarios */
+  --color-dark-white: #ffffff; /* Blanco Puro */
+
+  --animate-float: float 3s ease-in-out infinite;
+  --animate-pulse-slow: pulse 3s ease-in-out infinite;
+  --animate-gradient: gradient 8s ease infinite;
+  --animate-slide-in: slideIn 0.5s ease-out forwards;
+  --animate-fade-in: fadeIn 0.6s ease-out forwards;
+
+  @keyframes float {
+    0%,
+    100% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
+  }
+
+  @keyframes gradient {
+    0%,
+    100% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+  }
+
+  @keyframes slideIn {
+    0% {
+      transform: translateX(-100%);
+      opacity: 0;
+    }
+    100% {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+
+  @keyframes fadeIn {
+    0% {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}
+
+/* .skill-tag {
+  @apply px-3 py-2 bg-gradient-to-r from-cyber-blue/20 to-cyber-purple/20 text-white rounded-lg text-sm font-medium hover:from-cyber-blue/30 hover:to-cyber-purple/30 transition-all duration-300 transform hover:scale-105;
+} */
+
+.nav-link {
+  position: relative;
+}
+
+.nav-link::after {
+  content: "";
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    var(--color-light-primary),
+    var(--color-light-secondary)
+  );
+  transition: width 0.3s ease;
+}
+
+.nav-link:hover::after {
+  width: 100%;
+}
+
+.fade-in-section {
+  opacity: 0;
+  transform: translateY(20px);
+  visibility: hidden;
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.fade-in-section.is-visible {
+  opacity: 1;
+  transform: none;
+  visibility: visible;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-dark-card);
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(
+    45deg,
+    var(--color-light-primary),
+    var(--color-light-secondary)
+  );
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(
+    45deg,
+    var(--color-light-primary),
+    var(--color-light-secondary)
+  );
+}

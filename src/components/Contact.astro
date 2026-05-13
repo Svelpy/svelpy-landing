@@ -1,0 +1,107 @@
+---
+// Contact.astro — Sección "Contacto"
+import { companyInfo } from "../data/company";
+import LinkedInIcon from "./icons/LinkedInIcon.astro";
+import MailIcon from "./icons/MailIcon.astro";
+import WhatsappIcon from "./icons/WhatsappIcon.astro";
+import GitHubIcon from "./icons/GitHubIcon.astro";
+---
+
+<section id="contacto" class="py-20 px-6">
+  <div class="container mx-auto">
+    <div class="text-center mb-16">
+      <div class="inline-block">
+        <div class="flex items-center gap-3 mb-4">
+          <div
+            class="w-12 h-0.5 bg-linear-to-r from-transparent to-light-accent"
+          >
+          </div>
+          <span
+            class="text-light-accent font-mono text-sm uppercase tracking-widest"
+          >
+            05. Contacto
+          </span>
+          <div
+            class="w-12 h-0.5 bg-linear-to-l from-transparent to-light-accent"
+          >
+          </div>
+        </div>
+      </div>
+
+      <h2
+        class="text-4xl md:text-5xl block font-bold bg-linear-to-r from-light-primary to-light-secondary bg-clip-text text-transparent mb-6"
+      >
+        ¿Tienes un Proyecto?
+      </h2>
+      <p class="text-xl text-light-text-body max-w-2xl mx-auto leading-relaxed">
+        Cuéntanos tu idea. Te respondemos en menos de 24 horas con una propuesta
+        inicial completamente gratuita.
+      </p>
+    </div>
+
+    <div class="max-w-4xl mx-auto">
+      <!-- Cards de contacto -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+        <a
+          href={`mailto:${companyInfo.email}`}
+          id="contact-email"
+          class="group relative transition-all duration-500 hover:shadow-2xl hover:bg-light-background p-6 shadow-lg"
+        >
+          <div class="relative text-center">
+            <div
+              class="w-16 h-16 mx-auto mb-4 bg-light-accent rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300"
+            >
+              <MailIcon class="w-8 h-8 text-light-white" />
+            </div>
+            <h3 class="text-lg font-bold text-light-primary mb-2">Email</h3>
+            <p class="text-light-text-body text-xs mb-3">
+              Consultas y presupuestos
+            </p>
+            <div class="text-light-secondary font-mono text-xs break-all">
+              {companyInfo.email}
+            </div>
+          </div>
+        </a>
+
+        <a
+          href={`https://wa.me/${companyInfo.whatsapp?.replace(/\D/g, "")}`}
+          target="_blank"
+          rel="noopener noreferrer"
+          id="contact-whatsapp"
+          class="group relative transition-all duration-500 hover:shadow-2xl hover:bg-light-background p-6 shadow-lg"
+        >
+          <div class="relative text-center">
+            <div
+              class="w-16 h-16 mx-auto mb-4 bg-light-accent rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300"
+            >
+              <WhatsappIcon class="w-8 h-8 text-light-white" />
+            </div>
+            <h3 class="text-lg font-bold text-light-primary mb-2">WhatsApp</h3>
+            <p class="text-light-text-body text-xs mb-3">
+              Respuesta más rápida
+            </p>
+            <div class="text-light-secondary font-mono text-xs">
+              {companyInfo.whatsapp}
+            </div>
+          </div>
+        </a>
+      </div>
+
+      <!-- Bloque de CTA final -->
+      <div class="text-center p-8 bg-light-primary shadow-2xl">
+        <h3 class="text-2xl font-bold text-light-white mb-3">Hablemos</h3>
+        <p class="text-light-white/80 mb-6 max-w-md mx-auto">
+          Sin compromisos. Analizamos tu proyecto y te enviamos una propuesta
+          técnica.
+        </p>
+        <a
+          href={`mailto:${companyInfo.email}?subject=Consulta%20de%20proyecto%20-%20Svelpy`}
+          id="cta-email-main"
+          class="inline-block px-10 py-4 bg-light-white text-light-primary font-bold hover:shadow-xl transition-all duration-300 hover:scale-105"
+        >
+          Escribir ahora →
+        </a>
+      </div>
+    </div>
+  </div>
+</section>

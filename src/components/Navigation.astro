@@ -1,0 +1,135 @@
+---
+//Navigation.astro
+import { companyInfo } from "../data/company";
+
+const navItems = [
+  { href: "#hero", label: "Inicio" },
+  { href: "#nosotros", label: "Nosotros" },
+  { href: "#servicios", label: "Servicios" },
+  { href: "#casos", label: "Casos de Éxito" },
+  // { href: "#stack", label: "Stack" },
+  { href: "#contacto", label: "Contacto" },
+];
+---
+
+<nav class="fixed top-0 left-0 right-0 z-50 px-4">
+  <div class="max-w-6xl mx-auto px-6 py-4">
+    <div class="flex items-center justify-between">
+      <a
+        href="#hero"
+        class="text-2xl font-mono font-bold text-light-primary hover:text-light-secondary transition-colors duration-200"
+      >
+        <div class="flex items-center justify-center">
+          <img src="/logo.png" alt="Svelpy Logo" class="size-10 md:size-14" />
+          <h1 class="font-bold text-[#4CA9A1] font-mono md:text-2xl">
+            {companyInfo.name}
+          </h1>
+        </div>
+      </a>
+
+      <div class="hidden lg:flex space-x-8">
+        {
+          navItems.map((item) => (
+            <a
+              href={item.href}
+              class="nav-link text-light-primary hover:text-light-secondary transition-all duration-200 font-medium pb-1 border-b-2 border-transparent hover:border-light-secondary bg-light-white shadow-2xl drop-shadow-lg hover:shadow-2xl hover:drop-shadow-lg px-2"
+            >
+              {item.label}
+            </a>
+          ))
+        }
+      </div>
+
+      <button
+        class="lg:hidden text-light-primary hover:text-light-secondary transition-colors duration-200"
+        id="mobile-menu-btn"
+        aria-label="Abrir menú"
+      >
+        <svg
+          class="w-6 h-6"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M4 6h16M4 12h16M4 18h16"></path>
+        </svg>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<div
+  class="fixed inset-0 z-40 bg-light-background backdrop-blur-lg hidden"
+  id="mobile-menu"
+>
+  <div
+    class="flex flex-col items-center justify-center h-full space-y-8 text-2xl"
+  >
+    {
+      navItems.map((item) => (
+        <a
+          href={item.href}
+          class="mobile-nav-link text-light-primary hover:text-light-secondary transition-colors duration-200 font-medium"
+        >
+          {item.label}
+        </a>
+      ))
+    }
+  </div>
+</div>
+
+<script>
+  const mobileMenuBtn = document.getElementById("mobile-menu-btn");
+  const mobileMenu = document.getElementById("mobile-menu");
+
+  mobileMenuBtn?.addEventListener("click", () => {
+    mobileMenu?.classList.toggle("hidden");
+  });
+
+  document.querySelectorAll(".mobile-nav-link").forEach((link) => {
+    link.addEventListener("click", () => {
+      mobileMenu?.classList.add("hidden");
+    });
+  });
+
+  // Resaltar link activo basado en la sección visible
+  const sections = document.querySelectorAll("section");
+  const navLinks = document.querySelectorAll(".nav-link");
+
+  const observerOptions = {
+    threshold: 0.3,
+    rootMargin: "-80px 0px -80px 0px",
+  };
+
+  const sectionObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        const id = entry.target.getAttribute("id");
+        navLinks.forEach((link) => {
+          link.classList.remove(
+            "text-light-secondary",
+            "border-b-2",
+            "border-light-secondary",
+          );
+          link.classList.add("text-light-primary");
+          if (link.getAttribute("href") === `#${id}`) {
+            link.classList.remove("text-light-primary");
+            link.classList.add(
+              "text-light-secondary",
+              "border-b-2",
+              "border-light-secondary",
+            );
+          }
+        });
+      }
+    });
+  }, observerOptions);
+
+  sections.forEach((section) => {
+    sectionObserver.observe(section);
+  });
+</script>

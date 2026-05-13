@@ -1,0 +1,62 @@
+---
+// Experience.astro — Sección "Nuestros Clientes"
+import ClientCard from "./ClientCard.astro";
+import { clients } from "../data/company";
+import ArrowRightIcon from "./icons/ArrowRightIcon.astro";
+---
+
+<section id="casos" class="py-20 px-6">
+  <div class="container mx-auto">
+    <div class="text-center mb-16">
+      <div class="inline-block">
+        <div class="flex items-center gap-3 mb-4">
+          <div
+            class="w-12 h-0.5 bg-linear-to-r from-transparent to-light-accent"
+          >
+          </div>
+          <span
+            class="text-light-accent font-mono text-sm uppercase tracking-widest"
+          >
+            03. Clientes
+          </span>
+          <div
+            class="w-12 h-0.5 bg-linear-to-l from-transparent to-light-accent"
+          >
+          </div>
+        </div>
+      </div>
+
+      <h2
+        class="text-4xl md:text-5xl block font-bold bg-linear-to-r from-light-primary to-light-secondary bg-clip-text text-transparent mb-6"
+      >
+        Empresas que Confían en Nosotros
+      </h2>
+
+      <p class="text-xl text-light-text-body max-w-2xl mx-auto leading-relaxed">
+        Hemos desarrollado aplicaciones reales para empresas reales.
+      </p>
+    </div>
+
+    <!-- Grid de clientes -->
+    <div
+      class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto"
+    >
+      {clients.map((client) => <ClientCard client={client} />)}
+    </div>
+
+    <div class="text-center mt-12">
+      <div class="inline-block p-6 transition-all duration-500">
+        <p class="text-light-secondary mb-4">
+          ¿Tu empresa podría ser la próxima en la lista?
+        </p>
+        <a
+          href="#contacto"
+          class="px-8 py-3 bg-light-primary hover:shadow-lg hover:shadow-light-primary transition-all duration-300 transform hover:scale-105 text-light-white flex items-center gap-2 justify-center"
+        >
+          Hablemos de tu proyecto
+          <ArrowRightIcon />
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
