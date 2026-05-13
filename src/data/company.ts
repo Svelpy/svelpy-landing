@@ -58,7 +58,7 @@ export interface CompanyValue {
 
 export const companyInfo: CompanyInfo = {
   name: "Svelpy",
-  tagline: "Construyendo el Futuro",
+  tagline: "// build the future",
   slogan: "Construimos el futuro digital de tu negocio",
   email: "svelpycontacto@gmail.com",
   phone: "+591 60984296",
@@ -152,7 +152,7 @@ export const clients: Client[] = [
     name: "OyS",
     url: "https://oy-s-frontend.vercel.app/login",
     description:
-      "Asistente de IA que genera documentos administrativos a partir de la data interna de la universidad, automatizando la creación de informes, actas y comunicados.",
+      "Asistente de IA que genera documentos administrativos a partir de la data interna de la universidad.",
     company: "Universidad Autónoma Gabriel René Moreno (UAGRM)",
     logo: "/clients/oys.webp",
     tags: ["IA Generativa", "Educación", "Automatización"],
@@ -169,17 +169,17 @@ export const clients: Client[] = [
     tags: ["Certificados", "Automatización", "SaaS"],
     icon: "📜",
   },
-  {
-    id: "billai",
-    name: "BillAI",
-    url: "https://bill-ai-frontend.vercel.app",
-    description:
-      "Aplicación web que convierte facturas en PDF o imágenes a archivos Excel organizados automáticamente, usando IA para extraer y estructurar los datos.",
-    company: "Datahub",
-    logo: "/clients/billai.webp",
-    tags: ["IA", "Finanzas", "Automatización"],
-    icon: "🤖",
-  },
+  // {
+  //   id: "billai",
+  //   name: "BillAI",
+  //   url: "https://bill-ai-frontend.vercel.app",
+  //   description:
+  //     "Aplicación web que convierte facturas en PDF o imágenes a archivos Excel organizados automáticamente, usando IA para extraer y estructurar los datos.",
+  //   company: "Datahub",
+  //   logo: "/clients/billai.webp",
+  //   tags: ["IA", "Finanzas", "Automatización"],
+  //   icon: "🤖",
+  // },
   {
     id: "dulcevizzio",
     name: "Dulce Vizzio",
