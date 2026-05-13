@@ -8,10 +8,11 @@ import Experience from "../components/Experience.astro";
 import Skills from "../components/Skills.astro";
 import Contact from "../components/Contact.astro";
 import Navigation from "../components/Navigation.astro";
+import { companyInfo } from "../data/company";
 ---
 
 <Layout
-  title="Svelpy — Construyendo el Futuro"
+  title={`Svelpy — ${companyInfo.tagline}`}
   description="Desarrollamos soluciones de software modernas, escalables y de alto rendimiento para empresas, negocios y emprendimientos que buscan crecer digitalmente."
 >
   <Navigation />
