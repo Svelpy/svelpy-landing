@@ -1,12 +1,13 @@
 ---
 // Contact.astro — Sección "Contacto"
 import { companyInfo } from "../data/company";
-import LinkedInIcon from "./icons/LinkedInIcon.astro";
 import MailIcon from "./icons/MailIcon.astro";
 import WhatsappIcon from "./icons/WhatsappIcon.astro";
-import GitHubIcon from "./icons/GitHubIcon.astro";
 
-const whatsappMessage = encodeURIComponent("Hola, me gustaría obtener más información sobre sus servicios de desarrollo de software y agendar una consulta.");
+const whatsappMessage = encodeURIComponent(
+  "Hola, me gustaría obtener más información sobre sus servicios de desarrollo de software y agendar una consulta.",
+);
+const formEndpoint = `https://formsubmit.co/${companyInfo.email}`;
 ---
 
 <section id="contacto" class="py-20 px-6">
@@ -20,9 +21,8 @@ const whatsappMessage = encodeURIComponent("Hola, me gustaría obtener más info
           </div>
           <span
             class="text-light-accent font-mono text-sm uppercase tracking-widest"
+            >05. Contacto</span
           >
-            05. Contacto
-          </span>
           <div
             class="w-12 h-0.5 bg-linear-to-l from-transparent to-light-accent"
           >
@@ -33,7 +33,7 @@ const whatsappMessage = encodeURIComponent("Hola, me gustaría obtener más info
       <h2
         class="text-4xl md:text-5xl block font-bold bg-linear-to-r from-light-primary to-light-secondary bg-clip-text text-transparent mb-6"
       >
-        ¿Tienes un Proyecto?
+        ¿Tienes un proyecto?
       </h2>
       <p class="text-xl text-light-text-body max-w-2xl mx-auto leading-relaxed">
         Cuéntanos tu idea. Te respondemos en menos de 24 horas con una propuesta
@@ -41,15 +41,15 @@ const whatsappMessage = encodeURIComponent("Hola, me gustaría obtener más info
       </p>
     </div>
 
-    <div class="max-w-4xl mx-auto">
+    <div class="max-w-5xl mx-auto">
       <!-- Cards de contacto -->
       <div
-        class="flex justify-center items-center md:flex-row flex-col gap-6 mb-12"
+        class="flex justify-center items-stretch md:flex-row flex-col gap-6 mb-12"
       >
         <a
           href={`mailto:${companyInfo.email}`}
           id="contact-email"
-          class="group relative transition-all duration-500 hover:shadow-2xl hover:bg-light-background p-6 shadow-lg"
+          class="group flex-1 max-w-sm transition-all duration-500 hover:shadow-2xl hover:bg-light-background p-6 shadow-lg"
         >
           <div class="relative text-center">
             <div
@@ -72,7 +72,7 @@ const whatsappMessage = encodeURIComponent("Hola, me gustaría obtener más info
           target="_blank"
           rel="noopener noreferrer"
           id="contact-whatsapp"
-          class="group relative transition-all duration-500 hover:shadow-2xl hover:bg-light-background p-6 shadow-lg"
+          class="group flex-1 max-w-sm transition-all duration-500 hover:shadow-2xl hover:bg-light-background p-6 shadow-lg"
         >
           <div class="relative text-center">
             <div
@@ -91,21 +91,279 @@ const whatsappMessage = encodeURIComponent("Hola, me gustaría obtener más info
         </a>
       </div>
 
-      <!-- Bloque de CTA final -->
-      <div class="text-center p-8 bg-light-primary shadow-2xl">
-        <h3 class="text-2xl font-bold text-light-white mb-3">Hablemos</h3>
-        <p class="text-light-white/80 mb-6 max-w-md mx-auto">
-          Sin compromisos. Analizamos tu proyecto y te enviamos una propuesta
-          técnica.
-        </p>
-        <a
-          href={`mailto:${companyInfo.email}?subject=Consulta%20de%20proyecto%20-%20Svelpy`}
-          id="cta-email-main"
-          class="inline-block px-10 py-4 bg-light-white text-light-primary font-bold hover:shadow-xl transition-all duration-300 hover:scale-105"
-        >
-          Escribir ahora →
-        </a>
+      <!-- Formulario de contacto -->
+      <div class="p-6 sm:p-8 md:p-10">
+        <div class="max-w-3xl mx-auto">
+          <div class="text-center mb-8">
+            <h3 class="text-2xl md:text-3xl font-bold text-light-primary mb-3">
+              Hablemos de tu proyecto
+            </h3>
+            <p class="text-light-primary max-w-xl mx-auto">
+              Completa el formulario y te contactaremos para conocer mejor lo
+              que necesita tu empresa.
+            </p>
+          </div>
+
+          <form
+            id="contact-form"
+            action={formEndpoint}
+            method="POST"
+            accept-charset="UTF-8"
+            class="grid grid-cols-1 md:grid-cols-2 gap-5"
+          >
+            <input
+              type="hidden"
+              name="_subject"
+              value="Nueva consulta desde la web de Svelpy"
+            />
+            <input type="hidden" name="_template" value="table" />
+
+            <!-- Honeypot: los usuarios no deben completar este campo. -->
+            <div class="absolute -left-[10000px]" aria-hidden="true">
+              <label for="company-website">Sitio web</label>
+              <input
+                id="company-website"
+                type="text"
+                name="_honey"
+                tabindex="-1"
+                autocomplete="off"
+              />
+            </div>
+
+            <div>
+              <label
+                for="contact-name"
+                class="block text-sm font-semibold text-light-primary mb-2"
+              >
+                Nombre y apellido <span
+                  class="text-light-accent"
+                  aria-hidden="true">*</span
+                >
+              </label>
+              <input
+                id="contact-name"
+                name="nombre"
+                type="text"
+                autocomplete="name"
+                minlength="2"
+                maxlength="80"
+                required
+                placeholder="Ej. Andrea Pérez"
+                class="w-full bg-light-white px-4 py-3 text-light-text-body outline-none border-2 border-light-accent transition focus:border-light-secondary focus:ring-2 focus:ring-light-secondary/30"
+              />
+            </div>
+
+            <div>
+              <label
+                for="contact-company"
+                class="block text-sm font-semibold text-light-primary mb-2"
+              >
+                Empresa <span class="text-light-white/60 font-normal"
+                  >(opcional)</span
+                >
+              </label>
+              <input
+                id="contact-company"
+                name="empresa"
+                type="text"
+                autocomplete="organization"
+                maxlength="100"
+                placeholder="Nombre de tu empresa"
+                class="w-full bg-light-white px-4 py-3 text-light-text-body outline-none border-2 border-light-accent transition focus:border-light-secondary focus:ring-2 focus:ring-light-secondary/30"
+              />
+            </div>
+
+            <div>
+              <label
+                for="contact-email-input"
+                class="block text-sm font-semibold text-light-primary mb-2"
+              >
+                Email <span class="text-light-accent" aria-hidden="true">*</span
+                >
+              </label>
+              <input
+                id="contact-email-input"
+                name="email"
+                type="email"
+                autocomplete="email"
+                maxlength="254"
+                required
+                placeholder="nombre@empresa.com"
+                class="w-full bg-light-white px-4 py-3 text-light-text-body outline-none border-2 border-light-accent transition focus:border-light-secondary focus:ring-2 focus:ring-light-secondary/30"
+              />
+            </div>
+
+            <div>
+              <label
+                for="contact-phone"
+                class="block text-sm font-semibold text-light-primary mb-2"
+              >
+                Teléfono <span class="text-light-accent" aria-hidden="true"
+                  >*</span
+                >
+              </label>
+              <input
+                id="contact-phone"
+                name="telefono"
+                type="tel"
+                inputmode="tel"
+                autocomplete="tel"
+                minlength="7"
+                maxlength="25"
+                required
+                placeholder="Ej. +591 70000000"
+                class="w-full bg-light-white px-4 py-3 text-light-text-body outline-none border-2 border-light-accent transition focus:border-light-secondary focus:ring-2 focus:ring-light-secondary/30"
+              />
+            </div>
+
+            <div class="md:col-span-2">
+              <label
+                for="contact-service"
+                class="block text-sm font-semibold text-light-primary mb-2"
+              >
+                ¿Qué solución necesitas? <span
+                  class="text-light-accent"
+                  aria-hidden="true">*</span
+                >
+              </label>
+              <select
+                id="contact-service"
+                name="tipo_de_proyecto"
+                required
+                class="w-full bg-light-white px-4 py-3 text-light-text-body outline-none border-2 border-light-accent transition focus:border-light-secondary focus:ring-2 focus:ring-light-secondary/30"
+              >
+                <option value="" selected disabled>Selecciona una opción</option
+                >
+                <option value="Desarrollo web a medida"
+                  >Desarrollo web a medida</option
+                >
+                <option value="Plataforma SaaS">Plataforma SaaS</option>
+                <option value="Tienda online / eCommerce"
+                  >Tienda online / eCommerce</option
+                >
+                <option value="Sistema de gestión empresarial"
+                  >Sistema de gestión empresarial</option
+                >
+                <option value="Otro">Otro</option>
+              </select>
+            </div>
+
+            <div class="md:col-span-2">
+              <label
+                for="contact-details"
+                class="block text-sm font-semibold text-light-primary mb-2"
+              >
+                Detalles del proyecto <span
+                  class="text-light-accent"
+                  aria-hidden="true">*</span
+                >
+              </label>
+              <textarea
+                id="contact-details"
+                name="detalles"
+                rows="6"
+                minlength="20"
+                maxlength="2000"
+                required
+                aria-describedby="details-help"
+                placeholder="Cuéntanos sobre tu empresa, el problema que quieres resolver, objetivos y plazos aproximados."
+                class="w-full bg-light-white px-4 py-3 text-light-text-body outline-none border-2 border-light-accent resize-y transition focus:border-light-secondary focus:ring-2 focus:ring-light-secondary/30"
+              ></textarea>
+              <p id="details-help" class="text-xs text-light-text-body mt-2">
+                Mínimo 20 caracteres. No incluyas contraseñas ni información
+                confidencial.
+              </p>
+            </div>
+
+            <div class="md:col-span-2">
+              <label class="flex gap-3 items-start cursor-pointer">
+                <input
+                  type="checkbox"
+                  name="acepta_privacidad"
+                  value="Sí"
+                  required
+                  class="mt-1 size-4 accent-light-secondary shrink-0"
+                />
+                <span class="text-sm text-light-text-body">
+                  He leído y acepto la <a
+                    href="/privacidad"
+                    class="text-light-primary underline underline-offset-4 hover:text-light-secondary"
+                    >política de privacidad</a
+                  > y autorizo el uso de mis datos para responder esta consulta.
+                  <span class="text-light-accent" aria-hidden="true">*</span>
+                </span>
+              </label>
+            </div>
+
+            <div class="md:col-span-2 flex flex-col items-center gap-4 pt-2">
+              <button
+                id="contact-submit"
+                type="submit"
+                class="w-full sm:w-auto min-w-56 px-10 py-4 bg-light-secondary text-light-white font-bold transition-all duration-300 hover:shadow-xl hover:brightness-110 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-light-white disabled:cursor-wait disabled:opacity-70"
+              >
+                Enviar consulta →
+              </button>
+              <p
+                id="contact-status"
+                class="min-h-6 text-sm text-center text-light-white"
+                role="status"
+                aria-live="polite"
+              >
+              </p>
+              <p class="text-xs text-light-primary text-center">
+                Los campos marcados con * son obligatorios.
+              </p>
+            </div>
+          </form>
+        </div>
       </div>
     </div>
   </div>
 </section>
+
+<script>
+  const form = document.querySelector<HTMLFormElement>("#contact-form");
+  const submitButton =
+    document.querySelector<HTMLButtonElement>("#contact-submit");
+  const status =
+    document.querySelector<HTMLParagraphElement>("#contact-status");
+
+  form?.addEventListener("submit", async (event) => {
+    event.preventDefault();
+
+    if (!submitButton || !status) return;
+
+    const defaultButtonText = submitButton.textContent;
+    submitButton.disabled = true;
+    submitButton.textContent = "Enviando…";
+    status.textContent = "Enviando tu consulta…";
+    status.className = "min-h-6 text-sm text-center text-light-white/80";
+
+    try {
+      const ajaxEndpoint = form.action.replace(
+        "formsubmit.co/",
+        "formsubmit.co/ajax/",
+      );
+      const response = await fetch(ajaxEndpoint, {
+        method: "POST",
+        headers: { Accept: "application/json" },
+        body: new FormData(form),
+      });
+
+      if (!response.ok) throw new Error("No se pudo enviar el formulario");
+
+      form.reset();
+      status.textContent =
+        "¡Gracias! Recibimos tu consulta y te responderemos pronto.";
+      status.className =
+        "min-h-6 text-sm text-center font-semibold text-light-white";
+    } catch {
+      status.innerHTML = `No pudimos enviar el mensaje. Inténtalo de nuevo o escríbenos a <a class="underline font-semibold" href="mailto:soporte@svelpy.com">soporte@svelpy.com</a>.`;
+      status.className =
+        "min-h-6 text-sm text-center font-semibold text-light-accent";
+    } finally {
+      submitButton.disabled = false;
+      submitButton.textContent = defaultButtonText;
+    }
+  });
+</script>

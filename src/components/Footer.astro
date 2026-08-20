@@ -5,7 +5,14 @@ import LinkedInIcon from "./icons/LinkedInIcon.astro";
 import MailIcon from "./icons/MailIcon.astro";
 import WhatsappIcon from "./icons/WhatsappIcon.astro";
 import { companyInfo } from "../data/company";
+import InstagramIcon from "./icons/InstagramIcon.astro";
+import FacebookIcon from "./icons/FacebookIcon.astro";
+import TiktikIcon from "./icons/TiktikIcon.astro";
 const year = new Date().getFullYear();
+
+const whatsappMessage = encodeURIComponent(
+  "Hola, me gustaría obtener más información sobre sus servicios de desarrollo de software y agendar una consulta.",
+);
 ---
 
 <footer class="bg-light-background py-12 px-4 border-t border-light-primary/20">
@@ -17,7 +24,7 @@ const year = new Date().getFullYear();
       <!-- Logo y slogan -->
       <div class="text-center lg:text-left">
         <h2
-          class="text-light-white text-2xl font-mono font-bold bg-[#33E9BD] px-4 py-1 inline-block rotate-1 mb-2"
+          class="text-light-white text-2xl font-mono font-bold bg-light-secondary px-4 py-1 inline-block rotate-1 mb-2"
         >
           Svelpy
         </h2>
@@ -65,7 +72,7 @@ const year = new Date().getFullYear();
           <span class="text-xs">Email</span>
         </a>
         <a
-          href={`https://wa.me/${companyInfo.whatsapp?.replace(/\D/g, "")}`}
+          href={`https://wa.me/${companyInfo.whatsapp?.replace(/\D/g, "")}?text=${whatsappMessage}`}
           target="_blank"
           rel="noopener noreferrer"
           aria-label="WhatsApp"
@@ -74,6 +81,29 @@ const year = new Date().getFullYear();
           <WhatsappIcon />
           <span class="text-xs">WhatsApp</span>
         </a>
+
+        <a
+          href={`https:${companyInfo.intagram}`}
+          aria-label="Instagram"
+          target="_blank"
+          class="text-light-secondary hover:text-light-primary transition flex gap-1 flex-col items-center rotate-2"
+          ><InstagramIcon />
+          <span class="text-xs">Instagram</span></a
+        >
+        <a
+          href={`https:${companyInfo.facebook}`}
+          aria-label="Fcebook"
+          target="_blank"
+          class="text-light-secondary hover:text-light-primary transition flex gap-1 flex-col items-center rotate-2"
+          ><FacebookIcon /><span class="text-xs">Fcebook</span></a
+        >
+        <a
+          href={`https:${companyInfo.tiktok}`}
+          aria-label="Tiktok"
+          target="_blank"
+          class="text-light-secondary hover:text-light-primary transition flex gap-1 flex-col items-center rotate-2"
+          ><TiktikIcon /><span class="text-xs">Tiktok</span></a
+        >
       </div>
     </div>
 

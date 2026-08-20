@@ -1,6 +1,5 @@
 ---
-// About.astro — Sección "Nosotros"
-import { companyInfo, companyValues } from "../data/company";
+import { companyInfo } from "../data/company";
 ---
 
 <section id="nosotros" class="py-20 px-6">
@@ -42,9 +41,7 @@ import { companyInfo, companyValues } from "../data/company";
           🎯 Misión
         </h3>
         <p class="text-light-text-body">
-          Construir soluciones de software de alta calidad que impulsen el
-          crecimiento de negocios latinoamericanos, combinando tecnología de
-          vanguardia con una ejecución eficiente y comunicación transparente.
+          {companyInfo.mision}
         </p>
       </div>
 
@@ -54,9 +51,7 @@ import { companyInfo, companyValues } from "../data/company";
           🚀 Visión
         </h3>
         <p class="text-light-text-body">
-          Ser la empresa de desarrollo web de referencia en Bolivia y
-          Latinoamérica, reconocida por la velocidad de entrega, la calidad del
-          código y el impacto real en los negocios de nuestros clientes.
+          {companyInfo.vision}
         </p>
       </div>
 

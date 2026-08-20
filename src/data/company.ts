@@ -1,6 +1,3 @@
-// src/data/company.ts
-// Datos centralizados de Svelpy Software
-
 export interface CompanyInfo {
   name: string;
   tagline: string;
@@ -14,6 +11,11 @@ export interface CompanyInfo {
   description: string;
   foundedYear: number;
   location: string;
+  mision: string;
+  vision: string;
+  tiktok: string;
+  intagram: string;
+  facebook: string;
 }
 
 export interface Service {
@@ -64,11 +66,18 @@ export const companyInfo: CompanyInfo = {
   phone: "+591 76727537",
   whatsapp: "+591 76727537",
   linkedin: "https://www.linkedin.com/company/svelpy",
-  website: "#",
+  tiktok: "//www.tiktok.com/@svelpy_bo?_r=1&_t=ZS-992BJ8JmVJ2",
+  intagram: "//www.instagram.com/svelpy/",
+  facebook: "//www.facebook.com/share/1V7vU1Qdoo/",
+  website: "https://svelpy.com/",
   description:
     "Desarrollamos soluciones de software modernas, escalables y de alto rendimiento para empresas, negocios y emprendimientos que buscan crecer digitalmente.",
   foundedYear: 2025,
   location: "Santa Cruz de la Sierra, Bolivia",
+  mision:
+    "Impulsar el crecimiento de empresas e instituciones a través de soluciones de software de vanguardia e implementaciones operativas concretas, eliminando la complejidad técnica para que cada cliente opere de forma segura, eficiente y sin fricciones.",
+  vision:
+    "Posicionar a Svelpy en el mercado latinoamericano como el referente de innovación en software para empresas e instituciones, impulsando la migración hacia herramientas inteligentes, seguras y de rápida adopción.",
 };
 
 // ─── Servicios ───────────────────────────────────────────────────────────────
