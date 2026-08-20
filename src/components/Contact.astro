@@ -5,6 +5,8 @@ import LinkedInIcon from "./icons/LinkedInIcon.astro";
 import MailIcon from "./icons/MailIcon.astro";
 import WhatsappIcon from "./icons/WhatsappIcon.astro";
 import GitHubIcon from "./icons/GitHubIcon.astro";
+
+const whatsappMessage = encodeURIComponent("Hola, me gustaría obtener más información sobre sus servicios de desarrollo de software y agendar una consulta.");
 ---
 
 <section id="contacto" class="py-20 px-6">
@@ -66,7 +68,7 @@ import GitHubIcon from "./icons/GitHubIcon.astro";
         </a>
 
         <a
-          href={`https://wa.me/${companyInfo.whatsapp?.replace(/\D/g, "")}`}
+          href={`https://wa.me/${companyInfo.whatsapp?.replace(/\D/g, "")}?text=${whatsappMessage}`}
           target="_blank"
           rel="noopener noreferrer"
           id="contact-whatsapp"

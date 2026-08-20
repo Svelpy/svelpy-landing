@@ -60,9 +60,9 @@ export const companyInfo: CompanyInfo = {
   name: "Svelpy",
   tagline: "// build the future",
   slogan: "Construimos el futuro digital de tu negocio",
-  email: "svelpycontacto@gmail.com",
-  phone: "+591 60984296",
-  whatsapp: "+591 60984296",
+  email: "soporte@svelpy.com",
+  phone: "+591 76727537",
+  whatsapp: "+591 76727537",
   linkedin: "https://www.linkedin.com/company/svelpy",
   website: "#",
   description:
@@ -147,28 +147,28 @@ export const services: Service[] = [
 // ─── Clientes / Empresas ──────────────────────────────────────────────────────
 
 export const clients: Client[] = [
-  {
-    id: "oys",
-    name: "OyS",
-    url: "https://oy-s-frontend.vercel.app/login",
-    description:
-      "Asistente de IA que genera documentos administrativos a partir de la data interna de la universidad.",
-    company: "Universidad Autónoma Gabriel René Moreno (UAGRM)",
-    logo: "/clients/oys.webp",
-    tags: ["IA Generativa", "Educación", "Automatización"],
-    icon: "🎓",
-  },
-  {
-    id: "certhub",
-    name: "CertHub",
-    url: "https://cert-hub-frontend.vercel.app",
-    description:
-      "Plataforma web para la generación masiva de certificados personalizados, con plantillas dinámicas, exportación en PDF y envío automático por correo.",
-    company: "Datahub",
-    logo: "/clients/certhub.webp",
-    tags: ["Certificados", "Automatización", "SaaS"],
-    icon: "📜",
-  },
+  // {
+  //   id: "oys",
+  //   name: "OyS",
+  //   url: "https://oy-s-frontend.vercel.app/login",
+  //   description:
+  //     "Asistente de IA que genera documentos administrativos a partir de la data interna de la universidad.",
+  //   company: "Universidad Autónoma Gabriel René Moreno (UAGRM)",
+  //   logo: "/clients/oys.webp",
+  //   tags: ["IA Generativa", "Educación", "Automatización"],
+  //   icon: "🎓",
+  // },
+  // {
+  //   id: "certhub",
+  //   name: "CertHub",
+  //   url: "https://cert-hub-frontend.vercel.app",
+  //   description:
+  //     "Plataforma web para la generación masiva de certificados personalizados, con plantillas dinámicas, exportación en PDF y envío automático por correo.",
+  //   company: "Datahub",
+  //   logo: "/clients/certhub.webp",
+  //   tags: ["Certificados", "Automatización", "SaaS"],
+  //   icon: "📜",
+  // },
   // {
   //   id: "billai",
   //   name: "BillAI",

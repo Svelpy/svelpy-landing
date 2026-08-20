@@ -1,6 +1,7 @@
 ---
 //Layout.astro
 import Footer from "../components/Footer.astro";
+import FloatingWhatsApp from "../components/FloatingWhatsApp.astro";
 import "../styles/global.css";
 import { companyInfo } from "../data/company";
 
@@ -56,5 +57,6 @@ const { title, description = `Svelpy — ${companyInfo.slogan}` } = Astro.props;
 
     <slot />
     <Footer />
+    <FloatingWhatsApp />
   </body>
 </html>
