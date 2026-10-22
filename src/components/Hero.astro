@@ -2,118 +2,280 @@
 // Hero.astro
 import { companyInfo } from "../data/company";
 import ArrowRightIcon from "./icons/ArrowRightIcon.astro";
-import IsotipoMark from "./icons/IsotipoMark.astro";
 
 const [sloganStart, sloganEnd] = companyInfo.slogan.split(
   companyInfo.sloganHighlight,
 );
 
-// Ventana de terminal decorativa
-const terminalSteps = [
-  { label: "Descubrimiento y alcance", time: "sem 1" },
+// Pipeline de entrega: se ilumina etapa por etapa al cargar
+const pipeline = [
+  { label: "Descubrimiento", time: "sem 1" },
   { label: "Diseño UI/UX", time: "sem 2" },
-  { label: "Desarrollo por sprints", time: "sem 3–10" },
-  { label: "Pruebas y control de calidad", time: "continuo" },
+  { label: "Sprints de desarrollo", time: "sem 3–10" },
+  { label: "QA continuo", time: "siempre" },
+  { label: "En producción", time: "live" },
 ];
 ---
 
 <section
   id="hero"
-  class="relative isolate overflow-hidden bg-primary-950 pt-32 pb-24 md:pt-40 md:pb-32"
+  class="relative isolate overflow-hidden bg-primary-950 pt-36 pb-20 md:pt-48 md:pb-28"
 >
   <!-- Fondo -->
-  <div class="bg-grid-dark absolute inset-0 -z-10" aria-hidden="true"></div>
   <div
-    class="glow absolute -top-48 right-[-15%] -z-10 size-176"
+    class="glow absolute -top-72 left-1/2 -z-10 h-136 w-[70rem] -translate-x-1/2 opacity-40"
     aria-hidden="true"
   >
   </div>
-  <IsotipoMark
-    variant="light"
-    class="absolute -bottom-40 -left-40 -z-10 hidden w-136 opacity-5 lg:block"
-  />
 
-  <div
-    class="container-page grid items-center gap-16 lg:grid-cols-[1.1fr_0.9fr] lg:gap-12"
-  >
-    <div>
-      <h1
-        class="animate-fade-in text-[2.6rem] leading-[1.04] text-white sm:text-6xl xl:text-7xl"
-      >
-        {sloganStart}<span class="text-secondary"
-          >{companyInfo.sloganHighlight}</span
-        >{sloganEnd}
-      </h1>
+  <div class="container-page">
+    <p
+      class="animate-fade-in flex items-center gap-3 font-mono text-xs text-primary-400"
+    >
+      <span class="relative flex size-2" aria-hidden="true">
+        <span
+          class="absolute inline-flex size-full animate-ping rounded-full bg-secondary opacity-60"
+        ></span>
+        <span class="relative inline-flex size-2 rounded-full bg-secondary"
+        ></span>
+      </span>
+      {companyInfo.tagline}
+    </p>
 
-      <p
-        class="animate-fade-in mt-6 max-w-xl text-lg leading-relaxed text-primary-300 [animation-delay:100ms] md:text-xl"
-      >
+    <h1
+      class="animate-fade-in mt-8 max-w-6xl text-[clamp(2.75rem,8vw,6.75rem)] leading-[0.98] font-medium tracking-[-0.045em] text-white [animation-delay:80ms]"
+    >
+      {sloganStart}<span class="text-secondary"
+        >{companyInfo.sloganHighlight}</span
+      >{sloganEnd}<span
+        class="animate-blink ml-[0.08em] inline-block h-[0.78em] w-[0.09em] translate-y-[0.06em] bg-secondary"
+        aria-hidden="true"></span>
+    </h1>
+
+    <div
+      class="animate-fade-in mt-10 flex flex-col gap-8 [animation-delay:160ms] lg:flex-row lg:items-end lg:justify-between"
+    >
+      <p class="max-w-xl text-base leading-relaxed text-primary-400 md:text-lg">
         {companyInfo.description}
       </p>
 
-      <div
-        class="animate-fade-in mt-10 flex flex-col gap-3 [animation-delay:200ms] sm:flex-row"
-      >
+      <div class="flex shrink-0 flex-col gap-3 sm:flex-row">
         <a href="#contacto" class="btn btn-primary">
           Agenda una reunión
           <ArrowRightIcon class="size-5" />
         </a>
         <a href="#servicios" class="btn btn-ghost">Ver servicios</a>
       </div>
-
     </div>
 
-    <!-- Terminal -->
+    <!-- Pipeline -->
     <div
-      class="animate-fade-in relative [animation-delay:200ms]"
-      aria-hidden="true"
+      class="animate-fade-in mt-20 border-t border-white/10 pt-6 [animation-delay:240ms] md:mt-28"
     >
-      <div class="glow absolute inset-6 -z-10 opacity-70"></div>
       <div
-        class="overflow-hidden rounded-2xl border border-white/10 bg-primary-900/80 shadow-2xl shadow-black/40 backdrop-blur"
+        class="flex items-center justify-between gap-4 font-mono text-xs text-primary-400"
       >
-        <div class="flex items-center gap-2 border-b border-white/10 px-4 py-3">
-          <span class="size-3 rounded-full bg-secondary/80"></span>
-          <span class="size-3 rounded-full bg-white/15"></span>
-          <span class="size-3 rounded-full bg-white/15"></span>
-          <span class="ml-3 font-mono text-xs text-primary-400"
-            >svelpy — ~/tu-proyecto</span
-          >
-        </div>
-        <div
-          class="space-y-3 p-5 font-mono text-[13px] leading-relaxed sm:p-7 sm:text-sm"
-        >
-          <p class="text-primary-400">{companyInfo.tagline}</p>
-          <p class="text-white">
-            <span class="text-secondary">$</span> svelpy init tu-proyecto
-          </p>
-          {
-            terminalSteps.map((step) => (
-              <p class="flex items-center justify-between gap-4">
-                <span class="text-primary-200">
-                  <span class="text-secondary">✓</span> {step.label}
-                </span>
-                <span class="shrink-0 text-primary-400">{step.time}</span>
-              </p>
-            ))
-          }
-          <p class="flex items-center justify-between gap-4">
-            <span class="text-white">
-              <span class="text-secondary">→</span> Desplegado en producción
-            </span>
-            <span
-              class="shrink-0 rounded bg-secondary/15 px-1.5 py-0.5 text-xs text-secondary"
-              >live</span
-            >
-          </p>
-          <p class="text-white">
-            <span class="text-secondary">$</span>
-            <span
-              class="animate-blink inline-block h-4 w-2 translate-y-0.5 bg-secondary"
-            ></span>
-          </p>
-        </div>
+        <span>// de la idea a producción</span>
+        <span class="hidden sm:inline">~10 semanas</span>
       </div>
+
+      <ol class="pipeline mt-8 grid md:grid-cols-5">
+        {
+          pipeline.map((step, i) => (
+            <li
+              class="pipeline-step"
+              style={`--i: ${i}`}
+              data-last={i === pipeline.length - 1 ? "true" : undefined}
+            >
+              <span class="pipeline-node" aria-hidden="true" />
+              <span class="pipeline-label">{step.label}</span>
+              {i === pipeline.length - 1 ? (
+                <span class="pipeline-live">
+                  <span class="pipeline-live-dot" aria-hidden="true" />
+                  {step.time}
+                </span>
+              ) : (
+                <span class="pipeline-time">{step.time}</span>
+              )}
+            </li>
+          ))
+        }
+      </ol>
     </div>
   </div>
 </section>
+
+<style>
+  .pipeline {
+    --step: 0.5s;
+    --start: 0.7s;
+  }
+
+  .pipeline-step {
+    position: relative;
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    column-gap: 1rem;
+    padding-bottom: 1.75rem;
+
+    @media (min-width: 768px) {
+      grid-template-columns: 1fr;
+      row-gap: 0.25rem;
+      padding-bottom: 0;
+      padding-right: 1.5rem;
+    }
+  }
+
+  /* Tramo de línea hasta la siguiente etapa: base + relleno naranja */
+  .pipeline-step:not([data-last])::before,
+  .pipeline-step:not([data-last])::after {
+    content: "";
+    position: absolute;
+    top: 0.75rem;
+    bottom: 0;
+    left: 5px;
+    width: 1px;
+
+    @media (min-width: 768px) {
+      top: 5px;
+      bottom: auto;
+      left: 0.75rem;
+      right: 0;
+      width: auto;
+      height: 1px;
+    }
+  }
+
+  .pipeline-step:not([data-last])::before {
+    background-color: rgb(255 255 255 / 0.1);
+  }
+
+  .pipeline-step:not([data-last])::after {
+    background: linear-gradient(
+      to bottom,
+      var(--color-secondary),
+      rgb(255 71 36 / 0.7)
+    );
+    transform-origin: top;
+    animation: fill-y var(--step) linear
+      calc(var(--start) + var(--i) * var(--step)) both;
+
+    @media (min-width: 768px) {
+      background: linear-gradient(
+        to right,
+        var(--color-secondary),
+        rgb(255 71 36 / 0.7)
+      );
+      transform-origin: left;
+      animation-name: fill-x;
+    }
+  }
+
+  .pipeline-node {
+    position: relative;
+    z-index: 1;
+    width: 11px;
+    height: 11px;
+    border: 1px solid rgb(255 255 255 / 0.25);
+    border-radius: 3px;
+    background-color: var(--color-primary-950);
+    animation: node-on 0.3s ease-out calc(var(--start) + var(--i) * var(--step))
+      both;
+
+    @media (min-width: 768px) {
+      margin-bottom: 1rem;
+    }
+  }
+
+  .pipeline-label {
+    font-family: var(--font-display);
+    font-size: 0.95rem;
+    font-weight: 500;
+    animation: label-on 0.3s ease-out calc(var(--start) + var(--i) * var(--step))
+      both;
+  }
+
+  .pipeline-time,
+  .pipeline-live {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--color-primary-400);
+  }
+
+  .pipeline-live {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    justify-self: start;
+    padding: 0.15rem 0.45rem;
+    border-radius: 0.25rem;
+    background-color: rgb(255 71 36 / 0.15);
+    color: var(--color-secondary);
+    animation: fade-in 0.3s ease-out calc(var(--start) + var(--i) * var(--step))
+      both;
+  }
+
+  .pipeline-live-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 999px;
+    background-color: var(--color-secondary);
+    animation: live-pulse 1.6s ease-in-out infinite;
+  }
+
+  @keyframes fill-y {
+    from {
+      transform: scaleY(0);
+    }
+    to {
+      transform: scaleY(1);
+    }
+  }
+
+  @keyframes fill-x {
+    from {
+      transform: scaleX(0);
+    }
+    to {
+      transform: scaleX(1);
+    }
+  }
+
+  @keyframes node-on {
+    from {
+      border-color: rgb(255 255 255 / 0.25);
+      background-color: var(--color-primary-950);
+      box-shadow: none;
+    }
+    to {
+      border-color: var(--color-secondary);
+      background-color: var(--color-secondary);
+      box-shadow: 0 0 14px 2px rgb(255 71 36 / 0.55);
+    }
+  }
+
+  @keyframes label-on {
+    from {
+      color: var(--color-primary-400);
+    }
+    to {
+      color: var(--color-neutral);
+    }
+  }
+
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframes live-pulse {
+    50% {
+      opacity: 0.3;
+    }
+  }
+</style>
