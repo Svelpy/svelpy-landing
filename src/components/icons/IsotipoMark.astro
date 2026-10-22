@@ -1,0 +1,26 @@
+---
+// IsotipoMark.astro — Isotipo de Svelpy en SVG
+// variant "dark": para fondos claros (exteriores ciruela, interiores naranja)
+// variant "light": para fondos oscuros (exteriores naranja, interiores blancos)
+interface Props {
+  variant?: "light" | "dark";
+  class?: string;
+}
+
+const { variant = "dark", class: className = "size-10" } = Astro.props;
+const outer = variant === "light" ? "#FF4724" : "#2A182D";
+const inner = variant === "light" ? "#FFFFFF" : "#FF4724";
+---
+
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="84 84 912 912"
+  fill="none"
+  stroke-linecap="round"
+  stroke-width="112"
+  aria-hidden="true"
+  class={className}
+>
+  <path stroke={inner} d="M158 465 475 650M601 433 920 615"></path>
+  <path stroke={outer} d="M158 465 540 243M920 615 540 835"></path>
+</svg>

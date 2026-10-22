@@ -1,0 +1,51 @@
+---
+// SectionHeading.astro — Etiqueta + título + descripción de cada sección
+interface Props {
+  id?: string;
+  eyebrow: string;
+  title: string;
+  description?: string;
+  tone?: "light" | "dark";
+  align?: "left" | "center";
+}
+
+const {
+  id,
+  eyebrow,
+  title,
+  description,
+  tone = "light",
+  align = "left",
+} = Astro.props;
+const dark = tone === "dark";
+---
+
+<div
+  class:list={["max-w-2xl", align === "center" && "mx-auto text-center"]}
+  data-reveal
+>
+  <p class:list={["eyebrow", dark ? "text-secondary" : "text-secondary-600"]}>
+    {eyebrow}
+  </p>
+  <h2
+    id={id}
+    class:list={[
+      "mt-4 text-3xl leading-[1.1] sm:text-4xl md:text-5xl",
+      dark ? "text-white" : "text-primary-900",
+    ]}
+  >
+    {title}
+  </h2>
+  {
+    description && (
+      <p
+        class:list={[
+          "mt-5 text-lg leading-relaxed",
+          dark ? "text-primary-300" : "text-primary-600",
+        ]}
+      >
+        {description}
+      </p>
+    )
+  }
+</div>

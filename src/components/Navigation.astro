@@ -1,135 +1,178 @@
 ---
 //Navigation.astro
-import { companyInfo } from "../data/company";
+import Logo from "./Logo.astro";
 
 const navItems = [
-  { href: "#hero", label: "Inicio" },
-  { href: "#nosotros", label: "Nosotros" },
   { href: "#servicios", label: "Servicios" },
-  { href: "#casos", label: "Casos de Éxito" },
-  // { href: "#stack", label: "Stack" },
-  { href: "#contacto", label: "Contacto" },
+  { href: "#modelos", label: "Modelos" },
+  { href: "#proceso", label: "Proceso" },
+  { href: "#casos", label: "Casos" },
+  { href: "#nosotros", label: "Nosotros" },
 ];
 ---
 
-<nav class="fixed top-0 left-0 right-0 z-50 px-4">
-  <div class="max-w-6xl mx-auto px-6 py-4">
-    <div class="flex items-center justify-between">
-      <a
-        href="#hero"
-        class="text-2xl font-mono font-bold text-light-primary hover:text-light-secondary transition-colors duration-200"
-      >
-        <div class="flex items-center justify-center">
-          <img src="/logo.png" alt="Svelpy Logo" class="size-10 md:size-14" />
-          <h1 class="font-bold text-[#4CA9A1] font-mono md:text-2xl">
-            {companyInfo.name}
-          </h1>
-        </div>
-      </a>
+<header
+  id="site-header"
+  data-scrolled="false"
+  class="fixed inset-x-0 top-0 z-50 border-b border-transparent transition-[background-color,border-color] duration-300 data-[scrolled=true]:border-white/10 data-[scrolled=true]:bg-primary-950/95 data-[scrolled=true]:backdrop-blur-lg"
+>
+  <nav
+    class="container-page flex h-16 items-center justify-between gap-6 md:h-18"
+    aria-label="Principal"
+  >
+    <a href="#hero" class="shrink-0" aria-label="Svelpy — ir al inicio">
+      <Logo variant="light" class="h-7 w-auto md:h-8" />
+    </a>
 
-      <div class="hidden lg:flex space-x-8">
-        {
-          navItems.map((item) => (
+    <ul class="hidden items-center gap-1 lg:flex">
+      {
+        navItems.map((item) => (
+          <li>
             <a
               href={item.href}
-              class="nav-link text-light-primary hover:text-light-secondary transition-all duration-200 font-medium pb-1 border-b-2 border-transparent hover:border-light-secondary bg-light-white shadow-2xl drop-shadow-lg hover:shadow-2xl hover:drop-shadow-lg px-2"
+              class="nav-link relative rounded-md px-3 py-2 text-sm font-medium text-primary-300 transition-colors hover:text-white aria-[current=true]:text-white"
             >
               {item.label}
             </a>
-          ))
-        }
-      </div>
+          </li>
+        ))
+      }
+    </ul>
 
+    <div class="flex items-center gap-2">
+      <a href="#contacto" class="btn btn-primary btn-sm hidden sm:inline-flex">
+        Contáctanos
+      </a>
       <button
-        class="lg:hidden text-light-primary hover:text-light-secondary transition-colors duration-200"
-        id="mobile-menu-btn"
+        id="menu-toggle"
+        type="button"
+        class="inline-flex size-10 items-center justify-center rounded-lg text-white transition-colors hover:bg-white/10 lg:hidden"
+        aria-expanded="false"
+        aria-controls="mobile-menu"
         aria-label="Abrir menú"
       >
         <svg
-          class="w-6 h-6"
+          class="size-6"
           fill="none"
           stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
           viewBox="0 0 24 24"
+          aria-hidden="true"
         >
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
-            d="M4 6h16M4 12h16M4 18h16"></path>
+          <path class="menu-icon-open" d="M4 7h16M4 12h16M4 17h16"></path>
+          <path class="menu-icon-close hidden" d="M6 6l12 12M18 6 6 18"></path>
         </svg>
       </button>
     </div>
-  </div>
-</nav>
+  </nav>
 
-<div
-  class="fixed inset-0 z-40 bg-light-background backdrop-blur-lg hidden"
-  id="mobile-menu"
->
   <div
-    class="flex flex-col items-center justify-center h-full space-y-8 text-2xl"
+    id="mobile-menu"
+    class="hidden border-t border-white/10 bg-primary-950/95 backdrop-blur-lg lg:hidden"
   >
-    {
-      navItems.map((item) => (
-        <a
-          href={item.href}
-          class="mobile-nav-link text-light-primary hover:text-light-secondary transition-colors duration-200 font-medium"
-        >
-          {item.label}
+    <ul class="container-page flex flex-col gap-1 py-4">
+      {
+        navItems.map((item) => (
+          <li>
+            <a
+              href={item.href}
+              class="mobile-link block rounded-lg px-3 py-3 text-base font-medium text-primary-200 transition-colors hover:bg-white/5 hover:text-white"
+            >
+              {item.label}
+            </a>
+          </li>
+        ))
+      }
+      <li class="px-3 pt-3">
+        <a href="#contacto" class="mobile-link btn btn-primary w-full">
+          Contáctanos
         </a>
-      ))
-    }
+      </li>
+    </ul>
   </div>
-</div>
+</header>
+
+<style>
+  .nav-link::after {
+    content: "";
+    position: absolute;
+    left: 0.75rem;
+    right: 0.75rem;
+    bottom: 0.2rem;
+    height: 2px;
+    border-radius: 2px;
+    background: var(--color-secondary);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.25s ease;
+  }
+
+  .nav-link:hover::after,
+  .nav-link[aria-current="true"]::after {
+    transform: scaleX(1);
+  }
+</style>
 
 <script>
-  const mobileMenuBtn = document.getElementById("mobile-menu-btn");
-  const mobileMenu = document.getElementById("mobile-menu");
+  const header = document.getElementById("site-header");
+  const toggle = document.getElementById("menu-toggle");
+  const menu = document.getElementById("mobile-menu");
+  let menuOpen = false;
 
-  mobileMenuBtn?.addEventListener("click", () => {
-    mobileMenu?.classList.toggle("hidden");
-  });
-
-  document.querySelectorAll(".mobile-nav-link").forEach((link) => {
-    link.addEventListener("click", () => {
-      mobileMenu?.classList.add("hidden");
-    });
-  });
-
-  // Resaltar link activo basado en la sección visible
-  const sections = document.querySelectorAll("section");
-  const navLinks = document.querySelectorAll(".nav-link");
-
-  const observerOptions = {
-    threshold: 0.3,
-    rootMargin: "-80px 0px -80px 0px",
+  const syncHeader = () => {
+    if (header) {
+      header.dataset.scrolled = String(window.scrollY > 8 || menuOpen);
+    }
   };
 
-  const sectionObserver = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        const id = entry.target.getAttribute("id");
-        navLinks.forEach((link) => {
-          link.classList.remove(
-            "text-light-secondary",
-            "border-b-2",
-            "border-light-secondary",
-          );
-          link.classList.add("text-light-primary");
-          if (link.getAttribute("href") === `#${id}`) {
-            link.classList.remove("text-light-primary");
-            link.classList.add(
-              "text-light-secondary",
-              "border-b-2",
-              "border-light-secondary",
-            );
-          }
-        });
-      }
-    });
-  }, observerOptions);
+  const setMenu = (open: boolean) => {
+    menuOpen = open;
+    menu?.classList.toggle("hidden", !open);
+    toggle?.setAttribute("aria-expanded", String(open));
+    toggle?.setAttribute("aria-label", open ? "Cerrar menú" : "Abrir menú");
+    toggle?.querySelector(".menu-icon-open")?.classList.toggle("hidden", open);
+    toggle?.querySelector(".menu-icon-close")?.classList.toggle("hidden", !open);
+    syncHeader();
+  };
 
-  sections.forEach((section) => {
+  toggle?.addEventListener("click", () => setMenu(!menuOpen));
+
+  document.querySelectorAll(".mobile-link").forEach((link) => {
+    link.addEventListener("click", () => setMenu(false));
+  });
+
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape" && menuOpen) {
+      setMenu(false);
+      toggle?.focus();
+    }
+  });
+
+  window.matchMedia("(min-width: 1024px)").addEventListener("change", (event) => {
+    if (event.matches) setMenu(false);
+  });
+
+  window.addEventListener("scroll", syncHeader, { passive: true });
+  syncHeader();
+
+  // Resaltar el link de la sección visible
+  const navLinks = document.querySelectorAll<HTMLAnchorElement>(".nav-link");
+
+  const sectionObserver = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        const id = `#${entry.target.id}`;
+        navLinks.forEach((link) => {
+          link.setAttribute("aria-current", String(link.hash === id));
+        });
+      });
+    },
+    { rootMargin: "-45% 0px -50% 0px" },
+  );
+
+  document.querySelectorAll("main section[id]").forEach((section) => {
     sectionObserver.observe(section);
   });
 </script>

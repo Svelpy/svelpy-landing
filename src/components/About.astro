@@ -1,86 +1,77 @@
 ---
-import { companyInfo } from "../data/company";
+// About.astro — Sección "Nosotros"
+import { companyInfo, companyValues } from "../data/company";
+import SectionHeading from "./SectionHeading.astro";
+import { icons } from "./icons";
+import MapPinIcon from "./icons/MapPinIcon.astro";
+
+const pillars = [
+  { label: "Misión", text: companyInfo.mision },
+  { label: "Visión", text: companyInfo.vision },
+];
 ---
 
-<section id="nosotros" class="py-20 px-6">
-  <div class="container mx-auto">
-    <div class="text-center mb-16">
-      <div class="inline-block">
-        <div class="flex items-center gap-3 mb-4">
-          <div
-            class="w-12 h-0.5 bg-linear-to-r from-transparent to-light-accent"
-          >
-          </div>
-          <span
-            class="text-light-accent font-mono text-sm uppercase tracking-widest"
-          >
-            01. Nosotros
-          </span>
-          <div
-            class="w-12 h-0.5 bg-linear-to-l from-transparent to-light-accent"
-          >
-          </div>
-        </div>
-      </div>
-
-      <h2
-        class="text-4xl md:text-5xl block font-bold bg-linear-to-r from-light-primary to-light-secondary bg-clip-text text-transparent mb-6"
-      >
-        Quiénes Somos
-      </h2>
-      <p class="text-xl text-light-text-body max-w-2xl mx-auto leading-relaxed">
-        Somos un equipo apasionado por la tecnología, comprometido con entregar
-        software que realmente funciona y que tu negocio necesita.
-      </p>
-    </div>
-
-    <div class="flex flex-col md:flex-row justify-center items-center gap-12">
-      <!-- Misión -->
-      <div class="rotate-1 p-6 bg-light-background shadow-2xl drop-shadow-lg">
-        <h3 class="text-2xl font-semibold mb-4 text-light-primary">
-          🎯 Misión
-        </h3>
-        <p class="text-light-text-body">
-          {companyInfo.mision}
+<section
+  id="nosotros"
+  class="border-t border-primary-100 py-24 md:py-32"
+  aria-labelledby="nosotros-title"
+>
+  <div class="container-page">
+    <div class="grid gap-14 lg:grid-cols-[0.9fr_1.1fr] lg:gap-20">
+      <div>
+        <SectionHeading
+          id="nosotros-title"
+          eyebrow="05 — Nosotros"
+          title="Quiénes somos"
+          description={companyInfo.about}
+        />
+        <p
+          class="mt-8 inline-flex items-center gap-2 font-mono text-sm text-primary-600"
+          data-reveal
+        >
+          <MapPinIcon class="size-4 text-secondary-600" />
+          {companyInfo.location}
         </p>
       </div>
 
-      <!-- Visión -->
-      <div class="-rotate-2 p-6 bg-light-background shadow-2xl drop-shadow-lg">
-        <h3 class="text-2xl font-semibold mb-4 text-light-primary">
-          🚀 Visión
-        </h3>
-        <p class="text-light-text-body">
-          {companyInfo.vision}
-        </p>
+      <div class="grid gap-5">
+        {
+          pillars.map((pillar, index) => (
+            <div
+              class="rounded-2xl border border-primary-200 bg-white p-7"
+              data-reveal
+              style={`--reveal-delay: ${index * 90}ms`}
+            >
+              <p class="eyebrow text-secondary-600">{pillar.label}</p>
+              <p class="mt-4 leading-relaxed text-primary-700">{pillar.text}</p>
+            </div>
+          ))
+        }
       </div>
-
-      <!-- Valores -->
-    </div>
-  </div>
-
-  <!-- Stats de la empresa -->
-  <div class="flex justify-center gap-6 mt-16 flex-wrap">
-    <div
-      class="text-center p-6 bg-light-background shadow-2xl drop-shadow-lg -rotate-1"
-    >
-      <div class="text-4xl font-bold text-light-primary mb-2">+6</div>
-      <div class="text-light-text-body text-sm">Proyectos entregados</div>
-    </div>
-    <div
-      class="text-center p-6 bg-light-background shadow-2xl drop-shadow-lg rotate-1"
-    >
-      <div class="text-4xl font-bold text-light-secondary mb-2">100%</div>
-      <div class="text-light-text-body text-sm">Clientes satisfechos</div>
     </div>
 
-    <div
-      class="text-center p-6 bg-light-background shadow-2xl drop-shadow-lg rotate-2"
-    >
-      <div class="text-4xl font-bold text-light-primary mb-2">
-        {companyInfo.foundedYear}
-      </div>
-      <div class="text-light-text-body text-sm">Fundada en Bolivia</div>
-    </div>
+    <!-- Valores -->
+    <!-- <div class="mt-20 grid gap-px overflow-hidden rounded-2xl border border-primary-200 bg-primary-200 md:grid-cols-3">
+      {
+        companyValues.map((value, index) => {
+          const Icon = icons[value.icon];
+          return (
+            <div
+              class="bg-white p-7 md:p-8"
+              data-reveal
+              style={`--reveal-delay: ${index * 90}ms`}
+            >
+              <span class="inline-flex size-11 items-center justify-center rounded-xl bg-primary-900 text-secondary">
+                <Icon class="size-5" />
+              </span>
+              <h3 class="mt-5 text-xl text-primary-900">{value.title}</h3>
+              <p class="mt-2 leading-relaxed text-primary-600">
+                {value.description}
+              </p>
+            </div>
+          );
+        })
+      }
+    </div> -->
   </div>
 </section>

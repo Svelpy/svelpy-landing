@@ -1,5 +1,6 @@
 // src/data/legal.ts
 // Datos para las páginas legales de Svelpy
+import { companyInfo } from "./company";
 
 export interface LegalSection {
   title: string;
@@ -65,7 +66,7 @@ export const privacyPolicy: LegalPage = {
         "Rectificación: puedes solicitar la corrección de datos incorrectos o incompletos.",
         "Eliminación: puedes solicitar que eliminemos tus datos, salvo cuando tengamos una obligación legal de conservarlos.",
         "Oposición: puedes oponerte al procesamiento de tus datos para fines de marketing.",
-        "Para ejercer cualquiera de estos derechos, contáctanos en hola@svelpy.dev con el asunto 'Privacidad — [Tu Solicitud]'.",
+        `Para ejercer cualquiera de estos derechos, contáctanos en ${companyInfo.email} con el asunto 'Privacidad — [Tu Solicitud]'.`,
       ],
     },
     {
@@ -80,9 +81,9 @@ export const privacyPolicy: LegalPage = {
       title: "7. Contacto",
       content: [
         "Si tienes preguntas sobre esta política o sobre el tratamiento de tus datos personales, puedes contactarnos en:",
-        "Correo electrónico: hola@svelpy.dev",
-        "Teléfono / WhatsApp: +591 67787486",
-        "Ubicación: Santa Cruz de la Sierra, Bolivia",
+        `Correo electrónico: ${companyInfo.email}`,
+        `Teléfono / WhatsApp: ${companyInfo.phone}`,
+        `Ubicación: ${companyInfo.location}`,
       ],
     },
   ],
@@ -107,7 +108,7 @@ export const termsOfService: LegalPage = {
     {
       title: "2. Proceso de Contratación",
       content: [
-        "El proceso inicia con una consulta gratuita donde evaluamos tu proyecto y necesidades.",
+        "El proceso inicia con una reunión inicial donde evaluamos tu proyecto y necesidades.",
         "Emitimos una propuesta técnica y económica detallada con alcance, cronograma y precio total.",
         "El proyecto comienza únicamente tras la firma del contrato y el pago del anticipo acordado (generalmente 40–50% del valor total).",
         "Cualquier cambio en el alcance del proyecto debe acordarse por escrito y puede implicar ajustes en precio y cronograma.",
@@ -221,7 +222,7 @@ export const cookiesPolicy: LegalPage = {
     {
       title: "6. Contacto",
       content: [
-        "Si tienes preguntas sobre nuestra política de cookies, contáctanos en hola@svelpy.dev.",
+        `Si tienes preguntas sobre nuestra política de cookies, contáctanos en ${companyInfo.email}.`,
       ],
     },
   ],

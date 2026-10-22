@@ -1,0 +1,63 @@
+---
+// Faq.astro — Sección "Preguntas frecuentes"
+import { companyInfo, faqs } from "../data/company";
+import SectionHeading from "./SectionHeading.astro";
+import ArrowRightIcon from "./icons/ArrowRightIcon.astro";
+import PlusIcon from "./icons/PlusIcon.astro";
+---
+
+<section
+  id="faq"
+  class="border-y border-primary-100 bg-primary-50 py-24 md:py-32"
+  aria-labelledby="faq-title"
+>
+  <div class="container-page grid gap-12 lg:grid-cols-[0.8fr_1.2fr] lg:gap-20">
+    <div>
+      <SectionHeading
+        id="faq-title"
+        eyebrow="06 — Preguntas frecuentes"
+        title="Resolvemos tus dudas antes de empezar"
+      />
+      <p class="mt-6 text-primary-600" data-reveal>
+        ¿Tienes otra pregunta?
+        <a
+          href={`mailto:${companyInfo.email}`}
+          class="inline-flex items-center gap-1 font-semibold text-primary-900 underline decoration-secondary decoration-2 underline-offset-4 transition-colors hover:text-secondary-600"
+        >
+          Escríbenos
+          <ArrowRightIcon class="size-4" />
+        </a>
+      </p>
+    </div>
+
+    <div class="divide-y divide-primary-200 border-y border-primary-200" data-reveal>
+      {
+        faqs.map((faq) => (
+          <details class="faq-item group">
+            <summary class="flex cursor-pointer items-center justify-between gap-6 py-6 text-left">
+              <span class="font-display text-lg font-bold text-primary-900 transition-colors group-hover:text-secondary-600">
+                {faq.question}
+              </span>
+              <span class="inline-flex size-8 shrink-0 items-center justify-center rounded-full border border-primary-200 bg-white text-primary-700 transition duration-300 group-open:rotate-45 group-open:border-secondary group-open:bg-secondary group-open:text-primary-950">
+                <PlusIcon class="size-4" />
+              </span>
+            </summary>
+            <p class="max-w-2xl pb-6 leading-relaxed text-primary-600">
+              {faq.answer}
+            </p>
+          </details>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  .faq-item summary {
+    list-style: none;
+  }
+
+  .faq-item summary::-webkit-details-marker {
+    display: none;
+  }
+</style>

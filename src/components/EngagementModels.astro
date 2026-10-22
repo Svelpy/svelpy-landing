@@ -1,0 +1,112 @@
+---
+// EngagementModels.astro — Sección "Modelos de trabajo"
+import { engagementModels } from "../data/company";
+import SectionHeading from "./SectionHeading.astro";
+import { icons } from "./icons";
+import CheckIcon from "./icons/CheckIcon.astro";
+---
+
+<section
+  id="modelos"
+  class="border-y border-primary-100 bg-primary-50 py-24 md:py-32"
+  aria-labelledby="modelos-title"
+>
+  <div class="container-page">
+    <SectionHeading
+      id="modelos-title"
+      eyebrow="02 — Modelos de trabajo"
+      title="Elige cómo quieres trabajar con nosotros"
+      description="Desarrollamos software a tu medida o te damos acceso a plataformas listas para usar. Tú eliges el modelo que mejor se adapta a tu presupuesto y a la etapa de tu negocio."
+      align="center"
+    />
+
+    <div class="mt-14 grid gap-5 lg:grid-cols-3">
+      {
+        engagementModels.map((model, index) => {
+          const Icon = icons[model.icon];
+          const featured = model.featured;
+          return (
+            <article
+              class:list={[
+                "relative flex flex-col rounded-2xl border p-8",
+                featured
+                  ? "border-primary-900 bg-primary-900 text-primary-300 shadow-[0_30px_60px_-30px_rgb(42_24_45/0.6)]"
+                  : "border-primary-200 bg-white text-primary-600",
+              ]}
+              data-reveal
+              style={`--reveal-delay: ${index * 90}ms`}
+            >
+              {featured && (
+                <div
+                  class="absolute inset-x-8 top-0 h-px bg-linear-to-r from-transparent via-secondary to-transparent"
+                  aria-hidden="true"
+                />
+              )}
+              <div class="flex items-center justify-between gap-4">
+                <span
+                  class:list={[
+                    "inline-flex size-11 items-center justify-center rounded-xl",
+                    featured
+                      ? "bg-secondary text-primary-950"
+                      : "bg-secondary-50 text-secondary-600 ring-1 ring-secondary-100",
+                  ]}
+                >
+                  <Icon class="size-5" />
+                </span>
+                <span class:list={["chip", featured && "chip-dark"]}>
+                  {model.label}
+                </span>
+              </div>
+
+              <h3
+                class:list={[
+                  "mt-6 text-2xl",
+                  featured ? "text-white" : "text-primary-900",
+                ]}
+              >
+                {model.title}
+              </h3>
+              <p class="mt-3 leading-relaxed">{model.description}</p>
+
+              <ul
+                class:list={[
+                  "mt-6 space-y-3 border-t pt-6",
+                  featured ? "border-white/10" : "border-primary-100",
+                ]}
+              >
+                {model.features.map((feature) => (
+                  <li
+                    class:list={[
+                      "flex items-start gap-2.5 text-sm",
+                      featured ? "text-primary-200" : "text-primary-700",
+                    ]}
+                  >
+                    <CheckIcon
+                      class:list={[
+                        "mt-0.5 size-4 shrink-0",
+                        featured ? "text-secondary" : "text-secondary-600",
+                      ]}
+                    />
+                    {feature}
+                  </li>
+                ))}
+              </ul>
+
+              <div class="mt-auto pt-8">
+                <a
+                  href="#contacto"
+                  class:list={[
+                    "btn w-full",
+                    featured ? "btn-primary" : "btn-outline",
+                  ]}
+                >
+                  {model.cta}
+                </a>
+              </div>
+            </article>
+          );
+        })
+      }
+    </div>
+  </div>
+</section>

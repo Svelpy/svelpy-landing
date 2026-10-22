@@ -1,143 +1,140 @@
 ---
 // Footer.astro — Footer de Svelpy
-import GitHubIcon from "./icons/GitHubIcon.astro";
-import LinkedInIcon from "./icons/LinkedInIcon.astro";
-import MailIcon from "./icons/MailIcon.astro";
-import WhatsappIcon from "./icons/WhatsappIcon.astro";
-import { companyInfo } from "../data/company";
-import InstagramIcon from "./icons/InstagramIcon.astro";
+import { companyInfo, services, socialLinks, whatsappUrl } from "../data/company";
+import Logo from "./Logo.astro";
 import FacebookIcon from "./icons/FacebookIcon.astro";
+import InstagramIcon from "./icons/InstagramIcon.astro";
+import LinkedInIcon from "./icons/LinkedInIcon.astro";
 import TiktikIcon from "./icons/TiktikIcon.astro";
+
 const year = new Date().getFullYear();
 
-const whatsappMessage = encodeURIComponent(
-  "Hola, me gustaría obtener más información sobre sus servicios de desarrollo de software y agendar una consulta.",
-);
+const socialIcons = {
+  linkedin: LinkedInIcon,
+  instagram: InstagramIcon,
+  facebook: FacebookIcon,
+  tiktok: TiktikIcon,
+};
+
+const columns = [
+  {
+    title: "Servicios",
+    links: services.map((service) => ({
+      label: service.title,
+      href: "/#servicios",
+    })),
+  },
+  {
+    title: "Empresa",
+    links: [
+      { label: "Modelos de trabajo", href: "/#modelos" },
+      { label: "Proceso", href: "/#proceso" },
+      { label: "Casos de éxito", href: "/#casos" },
+      { label: "Nosotros", href: "/#nosotros" },
+      { label: "Preguntas frecuentes", href: "/#faq" },
+    ],
+  },
+  {
+    title: "Legal",
+    links: [
+      { label: "Política de Privacidad", href: "/privacidad" },
+      { label: "Términos y Condiciones", href: "/terminos" },
+      { label: "Política de Cookies", href: "/cookies" },
+    ],
+  },
+];
 ---
 
-<footer class="bg-light-background py-12 px-4 border-t border-light-primary/20">
-  <div class="max-w-6xl mx-auto">
-    <!-- Fila principal -->
-    <div
-      class="flex flex-col lg:flex-row items-center justify-between gap-8 mb-8"
-    >
-      <!-- Logo y slogan -->
-      <div class="text-center lg:text-left">
-        <h2
-          class="text-light-white text-2xl font-mono font-bold bg-light-secondary px-4 py-1 inline-block rotate-1 mb-2"
-        >
-          Svelpy
-        </h2>
-        <p class="text-light-text-body text-sm mt-2">
-          {companyInfo.tagline}
-        </p>
-        <p class="text-light-text-body text-xs mt-1">
-          📍 {companyInfo.location}
-        </p>
+<footer class="relative isolate overflow-hidden bg-primary-950 text-primary-300">
+  <div
+    class="absolute inset-x-0 top-0 h-px bg-linear-to-r from-transparent via-secondary/60 to-transparent"
+    aria-hidden="true"
+  >
+  </div>
+
+  <div class="container-page py-16 md:py-20">
+    <div class="grid gap-12 lg:grid-cols-[1fr_2.3fr] lg:gap-16">
+      <!-- Marca -->
+      <div class="max-w-sm">
+        <a href="/" aria-label="Svelpy — inicio" class="inline-block">
+          <Logo variant="light" class="h-8 w-auto" loading="lazy" />
+        </a>
+        <p class="mt-6 leading-relaxed">{companyInfo.description}</p>
+        <ul class="mt-6 flex gap-2">
+          {
+            socialLinks.map((link) => {
+              const Icon = socialIcons[link.id];
+              return (
+                <li>
+                  <a
+                    href={link.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={link.label}
+                    class="inline-flex size-10 items-center justify-center rounded-lg border border-white/10 text-primary-300 transition-colors hover:border-secondary hover:bg-secondary hover:text-primary-950"
+                  >
+                    <Icon class="size-5" />
+                  </a>
+                </li>
+              );
+            })
+          }
+        </ul>
       </div>
 
-      <!-- Links de navegación -->
-      <nav class="flex flex-wrap justify-center gap-x-8 gap-y-2 text-sm">
-        <a
-          href="#nosotros"
-          class="text-light-text-body hover:text-light-secondary transition-colors"
-          >Nosotros</a
-        >
-        <a
-          href="#servicios"
-          class="text-light-text-body hover:text-light-secondary transition-colors"
-          >Servicios</a
-        >
-        <a
-          href="#casos"
-          class="text-light-text-body hover:text-light-secondary transition-colors"
-          >Casos de Éxito</a
-        >
+      <!-- Columnas -->
+      <div class="grid gap-x-8 gap-y-10 sm:grid-cols-2 md:grid-cols-4">
+        {
+          columns.map((column) => (
+            <nav aria-label={column.title}>
+              <p class="font-mono text-xs tracking-[0.14em] text-primary-400 uppercase">
+                {column.title}
+              </p>
+              <ul class="mt-5 space-y-3 text-sm">
+                {column.links.map((link) => (
+                  <li>
+                    <a href={link.href} class="transition-colors hover:text-white">
+                      {link.label}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </nav>
+          ))
+        }
 
-        <a
-          href="#contacto"
-          class="text-light-text-body hover:text-light-secondary transition-colors"
-          >Contacto</a
-        >
-      </nav>
-
-      <!-- Social links -->
-      <div class="flex flex-wrap justify-center gap-4">
-        <a
-          href={`mailto:${companyInfo.email}`}
-          aria-label="Email"
-          class="text-light-secondary hover:text-light-primary transition flex gap-1 flex-col items-center rotate-2"
-        >
-          <MailIcon />
-          <span class="text-xs">Email</span>
-        </a>
-        <a
-          href={`https://wa.me/${companyInfo.whatsapp?.replace(/\D/g, "")}?text=${whatsappMessage}`}
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="WhatsApp"
-          class="text-light-secondary hover:text-light-primary transition flex gap-1 flex-col items-center -rotate-2"
-        >
-          <WhatsappIcon />
-          <span class="text-xs">WhatsApp</span>
-        </a>
-
-        <a
-          href={`https:${companyInfo.intagram}`}
-          aria-label="Instagram"
-          target="_blank"
-          class="text-light-secondary hover:text-light-primary transition flex gap-1 flex-col items-center rotate-2"
-          ><InstagramIcon />
-          <span class="text-xs">Instagram</span></a
-        >
-        <a
-          href={`https:${companyInfo.facebook}`}
-          aria-label="Fcebook"
-          target="_blank"
-          class="text-light-secondary hover:text-light-primary transition flex gap-1 flex-col items-center rotate-2"
-          ><FacebookIcon /><span class="text-xs">Fcebook</span></a
-        >
-        <a
-          href={`https:${companyInfo.tiktok}`}
-          aria-label="Tiktok"
-          target="_blank"
-          class="text-light-secondary hover:text-light-primary transition flex gap-1 flex-col items-center rotate-2"
-          ><TiktikIcon /><span class="text-xs">Tiktok</span></a
-        >
+        <div>
+          <p class="font-mono text-xs tracking-[0.14em] text-primary-400 uppercase">
+            Contacto
+          </p>
+          <ul class="mt-5 space-y-3 text-sm">
+            <li>
+              <a
+                href={`mailto:${companyInfo.email}`}
+                class="transition-colors hover:text-white"
+                >{companyInfo.email}</a
+              >
+            </li>
+            <li>
+              <a
+                href={whatsappUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="transition-colors hover:text-white"
+                >{companyInfo.whatsapp}</a
+              >
+            </li>
+            <li>{companyInfo.location}</li>
+          </ul>
+        </div>
       </div>
     </div>
 
-    <!-- Divider -->
-    <div class="border-t border-light-primary/20 pt-6">
-      <div
-        class="flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-light-text-body"
-      >
-        <p>© {year} {companyInfo.name}. Todos los derechos reservados.</p>
-
-        <!-- Links legales -->
-        <nav class="flex gap-4" aria-label="Legal">
-          <a
-            href="/privacidad"
-            class="hover:text-light-secondary transition-colors"
-          >
-            Política de Privacidad
-          </a>
-          <span>·</span>
-          <a
-            href="/terminos"
-            class="hover:text-light-secondary transition-colors"
-          >
-            Términos y Condiciones
-          </a>
-          <span>·</span>
-          <a
-            href="/cookies"
-            class="hover:text-light-secondary transition-colors"
-          >
-            Cookies
-          </a>
-        </nav>
-      </div>
+    <div
+      class="mt-16 flex flex-col gap-4 border-t border-white/10 pt-8 text-sm sm:flex-row sm:items-center sm:justify-between"
+    >
+      <p>© {year} {companyInfo.name}. Todos los derechos reservados.</p>
+      <p class="font-mono text-xs text-primary-400">{companyInfo.tagline}</p>
     </div>
   </div>
 </footer>

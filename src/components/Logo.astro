@@ -1,0 +1,28 @@
+---
+// Logo.astro — Logotipo horizontal de Svelpy
+// variant "light": para fondos oscuros · variant "dark": para fondos claros
+import { Image } from "astro:assets";
+import logoDark from "../assets/logos/svelpy-logo-dark.png";
+import logoLight from "../assets/logos/svelpy-logo-light.png";
+import { companyInfo } from "../data/company";
+
+interface Props {
+  variant?: "light" | "dark";
+  class?: string;
+  loading?: "eager" | "lazy";
+}
+
+const {
+  variant = "dark",
+  class: className = "h-8 w-auto",
+  loading = "eager",
+} = Astro.props;
+---
+
+<Image
+  src={variant === "light" ? logoLight : logoDark}
+  alt={companyInfo.name}
+  width={320}
+  class={className}
+  loading={loading}
+/>

@@ -1,0 +1,34 @@
+---
+// Cases.astro — Sección "Casos de éxito" (muro de logos)
+import { clients } from "../data/company";
+import ClientCard from "./ClientCard.astro";
+import SectionHeading from "./SectionHeading.astro";
+---
+
+<section
+  id="casos"
+  class="border-t border-white/5 bg-primary-950 py-24 md:py-32"
+  aria-labelledby="casos-title"
+>
+  <div class="container-page">
+    <SectionHeading
+      id="casos-title"
+      eyebrow="04 — Casos de éxito"
+      title="Empresas con las que trabajamos"
+      tone="dark"
+      align="center"
+    />
+
+    <ul
+      class="mt-16 flex flex-wrap items-center justify-center gap-x-16 gap-y-12 md:mt-20 md:gap-x-28"
+    >
+      {
+        clients.map((client, index) => (
+          <li>
+            <ClientCard client={client} index={index} />
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</section>

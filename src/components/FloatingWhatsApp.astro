@@ -1,21 +1,21 @@
 ---
 import WhatsappIcon from "./icons/WhatsappIcon.astro";
-import { companyInfo } from "../data/company";
-
-const whatsappMessage = encodeURIComponent("Hola, me gustaría obtener más información sobre sus servicios de desarrollo de software y agendar una consulta.");
+import { whatsappUrl } from "../data/company";
 ---
 
 <a
-  href={`https://wa.me/${companyInfo.whatsapp?.replace(/\D/g, "")}?text=${whatsappMessage}`}
+  href={whatsappUrl}
   target="_blank"
   rel="noopener noreferrer"
-  class="fixed bottom-6 right-6 z-50 bg-[#25D366] hover:bg-[#128C7E] text-white p-4 rounded-full shadow-2xl transition-all duration-300 hover:scale-110 flex items-center justify-center group"
+  class="group fixed right-5 bottom-5 z-40 flex size-14 items-center justify-center rounded-full bg-[#25D366] text-white shadow-[0_12px_30px_-8px_rgb(37_211_102/0.6)] transition duration-300 hover:scale-105 hover:bg-[#1EBE5A] md:right-6 md:bottom-6"
   aria-label="Contactar por WhatsApp"
 >
-  <WhatsappIcon class="w-8 h-8" />
-  
+  <WhatsappIcon class="size-7" />
+
   <!-- Tooltip que aparece al hacer hover -->
-  <span class="absolute right-full mr-4 bg-light-background text-light-primary text-sm font-bold px-3 py-2 rounded-lg shadow-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none whitespace-nowrap border border-light-accent">
+  <span
+    class="pointer-events-none absolute right-full mr-3 hidden rounded-lg bg-primary-900 px-3 py-2 font-display text-sm font-bold whitespace-nowrap text-white opacity-0 shadow-lg transition-opacity duration-300 group-hover:opacity-100 md:block"
+  >
     ¡Hablemos de tu proyecto!
   </span>
 </a>
