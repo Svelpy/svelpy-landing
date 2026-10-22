@@ -6,15 +6,6 @@ import ArrowRightIcon from "./icons/ArrowRightIcon.astro";
 const [sloganStart, sloganEnd] = companyInfo.slogan.split(
   companyInfo.sloganHighlight,
 );
-
-// Pipeline de entrega: se ilumina etapa por etapa al cargar
-const pipeline = [
-  { label: "Descubrimiento", time: "sem 1" },
-  { label: "Diseño UI/UX", time: "sem 2" },
-  { label: "Sprints de desarrollo", time: "sem 3–10" },
-  { label: "QA continuo", time: "siempre" },
-  { label: "En producción", time: "live" },
-];
 ---
 
 <section
@@ -29,19 +20,6 @@ const pipeline = [
   </div>
 
   <div class="container-page">
-    <p
-      class="animate-fade-in flex items-center gap-3 font-mono text-xs text-primary-400"
-    >
-      <span class="relative flex size-2" aria-hidden="true">
-        <span
-          class="absolute inline-flex size-full animate-ping rounded-full bg-secondary opacity-60"
-        ></span>
-        <span class="relative inline-flex size-2 rounded-full bg-secondary"
-        ></span>
-      </span>
-      {companyInfo.tagline}
-    </p>
-
     <h1
       class="animate-fade-in mt-8 max-w-6xl text-[clamp(2.75rem,8vw,6.75rem)] leading-[0.98] font-medium tracking-[-0.045em] text-white [animation-delay:80ms]"
     >
@@ -66,41 +44,6 @@ const pipeline = [
         </a>
         <a href="#servicios" class="btn btn-ghost">Ver servicios</a>
       </div>
-    </div>
-
-    <!-- Pipeline -->
-    <div
-      class="animate-fade-in mt-20 border-t border-white/10 pt-6 [animation-delay:240ms] md:mt-28"
-    >
-      <div
-        class="flex items-center justify-between gap-4 font-mono text-xs text-primary-400"
-      >
-        <span>// de la idea a producción</span>
-        <span class="hidden sm:inline">~10 semanas</span>
-      </div>
-
-      <ol class="pipeline mt-8 grid md:grid-cols-5">
-        {
-          pipeline.map((step, i) => (
-            <li
-              class="pipeline-step"
-              style={`--i: ${i}`}
-              data-last={i === pipeline.length - 1 ? "true" : undefined}
-            >
-              <span class="pipeline-node" aria-hidden="true" />
-              <span class="pipeline-label">{step.label}</span>
-              {i === pipeline.length - 1 ? (
-                <span class="pipeline-live">
-                  <span class="pipeline-live-dot" aria-hidden="true" />
-                  {step.time}
-                </span>
-              ) : (
-                <span class="pipeline-time">{step.time}</span>
-              )}
-            </li>
-          ))
-        }
-      </ol>
     </div>
   </div>
 </section>
@@ -192,8 +135,8 @@ const pipeline = [
     font-family: var(--font-display);
     font-size: 0.95rem;
     font-weight: 500;
-    animation: label-on 0.3s ease-out calc(var(--start) + var(--i) * var(--step))
-      both;
+    animation: label-on 0.3s ease-out
+      calc(var(--start) + var(--i) * var(--step)) both;
   }
 
   .pipeline-time,
