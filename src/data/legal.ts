@@ -55,7 +55,7 @@ export const privacyPolicy: LegalPage = {
       content: [
         "No vendemos ni alquilamos tus datos personales a terceros bajo ninguna circunstancia.",
         "Podemos compartir información con proveedores de servicios de confianza (hosting, email, analytics) bajo acuerdos de confidencialidad estrictos.",
-        "Herramientas que utilizamos: Google Analytics (análisis de tráfico), Vercel (hosting), Resend o similar (envío de emails transaccionales).",
+        "Herramientas que utilizamos: Google Analytics (análisis de tráfico), Cloudflare (hosting), Resend o similar (envío de emails transaccionales).",
         "Podemos divulgar información cuando sea requerido por ley o autoridades competentes en Bolivia.",
       ],
     },
