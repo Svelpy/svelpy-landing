@@ -5,8 +5,9 @@ interface Props {
   eyebrow: string;
   title: string;
   description?: string;
-  tone?: "light" | "dark";
   align?: "left" | "center";
+  // "split": título grande a la izquierda y descripción en una columna a la derecha
+  layout?: "stack" | "split";
 }
 
 const {
@@ -14,34 +15,38 @@ const {
   eyebrow,
   title,
   description,
-  tone = "light",
   align = "left",
+  layout = "stack",
 } = Astro.props;
-const dark = tone === "dark";
+const split = layout === "split";
 ---
 
 <div
-  class:list={["max-w-2xl", align === "center" && "mx-auto text-center"]}
-  data-reveal
+  class:list={[
+    split
+      ? "grid gap-6 lg:grid-cols-[1.3fr_1fr] lg:items-end lg:gap-16"
+      : "max-w-3xl",
+    !split && align === "center" && "mx-auto text-center",
+  ]}
+  data-heading
 >
-  <p class="text-secondary">
-    {eyebrow}
-  </p>
-  <h2
-    id={id}
-    class:list={[
-      "mt-4 text-3xl leading-[1.1] sm:text-4xl md:text-5xl",
-      "text-white",
-    ]}
-  >
-    {title}
-  </h2>
+  <div>
+    <p class="eyebrow text-secondary">{eyebrow}</p>
+    <h2
+      id={id}
+      data-split
+      class="mt-5 text-4xl leading-[1.02] tracking-[-0.035em] text-white sm:text-5xl lg:text-6xl"
+    >
+      {title}
+    </h2>
+  </div>
   {
     description && (
       <p
+        data-heading-text
         class:list={[
-          "mt-5 text-lg leading-relaxed",
-          dark ? "text-primary-300" : "text-primary-400",
+          "text-lg leading-relaxed text-primary-400",
+          split ? "max-w-md lg:pb-2" : "mt-6",
         ]}
       >
         {description}

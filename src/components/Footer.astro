@@ -1,6 +1,11 @@
 ---
 // Footer.astro — Footer de Svelpy
-import { companyInfo, services, socialLinks, whatsappUrl } from "../data/company";
+import {
+  companyInfo,
+  services,
+  socialLinks,
+  whatsappUrl,
+} from "../data/company";
 import Logo from "./Logo.astro";
 import FacebookIcon from "./icons/FacebookIcon.astro";
 import InstagramIcon from "./icons/InstagramIcon.astro";
@@ -45,13 +50,9 @@ const columns = [
 ];
 ---
 
-<footer class="relative isolate overflow-hidden bg-primary-950 text-primary-300">
-  <div
-    class="absolute inset-x-0 top-0 h-px bg-linear-to-r from-transparent via-secondary/60 to-transparent"
-    aria-hidden="true"
-  >
-  </div>
-
+<footer
+  class="relative isolate overflow-hidden bg-primary-950 text-primary-300"
+>
   <div class="container-page py-16 md:py-20">
     <div class="grid gap-12 lg:grid-cols-[1fr_2.3fr] lg:gap-16">
       <!-- Marca -->
@@ -93,7 +94,10 @@ const columns = [
               <ul class="mt-5 space-y-3 text-sm">
                 {column.links.map((link) => (
                   <li>
-                    <a href={link.href} class="transition-colors hover:text-white">
+                    <a
+                      href={link.href}
+                      class="transition-colors hover:text-white"
+                    >
                       {link.label}
                     </a>
                   </li>
@@ -104,7 +108,9 @@ const columns = [
         }
 
         <div>
-          <p class="font-mono text-xs tracking-[0.14em] text-primary-400 uppercase">
+          <p
+            class="font-mono text-xs tracking-[0.14em] text-primary-400 uppercase"
+          >
             Contacto
           </p>
           <ul class="mt-5 space-y-3 text-sm">

@@ -1,5 +1,5 @@
 ---
-// Cases.astro — Sección "Casos de éxito" (muro de logos)
+// Cases.astro — Sección "Casos de éxito" (muro de logos en cuadrícula)
 import { clients } from "../data/company";
 import ClientCard from "./ClientCard.astro";
 import SectionHeading from "./SectionHeading.astro";
@@ -7,25 +7,31 @@ import SectionHeading from "./SectionHeading.astro";
 
 <section
   id="casos"
-  class="border-t border-white/5 bg-primary-900 py-24 md:py-32"
+  class="relative isolate overflow-clip border-t border-white/5 bg-primary-900 py-24 md:py-36"
   aria-labelledby="casos-title"
 >
+  <!-- Halo de fondo -->
+  <div
+    class="glow absolute -top-60 left-1/2 -z-10 h-120 w-240 -translate-x-1/2 opacity-35"
+    aria-hidden="true"
+  >
+  </div>
+
   <div class="container-page">
     <SectionHeading
       id="casos-title"
       eyebrow="04 — Casos de éxito"
       title="Empresas con las que trabajamos"
-      tone="dark"
-      align="center"
+      description="Negocios que ya operan con software construido por Svelpy."
+      layout="split"
     />
 
-    <ul
-      class="mt-16 flex flex-wrap items-center justify-center gap-x-16 gap-y-12 md:mt-20 md:gap-x-28"
-    >
+    <!-- Las celdas crecen para llenar cada fila: funciona con cualquier número de clientes -->
+    <ul class="mt-16 flex flex-wrap bg-white/10 md:mt-24">
       {
-        clients.map((client, index) => (
-          <li>
-            <ClientCard client={client} index={index} />
+        clients.map((client) => (
+          <li class="grow basis-full sm:basis-[calc(50%-1px)] lg:basis-[calc(25%-1px)]">
+            <ClientCard client={client} />
           </li>
         ))
       }

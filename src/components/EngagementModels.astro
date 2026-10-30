@@ -1,5 +1,5 @@
 ---
-// EngagementModels.astro — Sección "Modelos de trabajo"
+// EngagementModels.astro — Sección "Modelos de trabajo" (banda dividida en columnas)
 import { engagementModels } from "../data/company";
 import SectionHeading from "./SectionHeading.astro";
 import { icons } from "./icons";
@@ -8,19 +8,28 @@ import CheckIcon from "./icons/CheckIcon.astro";
 
 <section
   id="modelos"
-  class="border-y border-white/10 bg-primary-900 py-24 md:py-32"
+  class="relative isolate overflow-clip border-y border-white/10 bg-primary-900 py-24 md:py-36"
   aria-labelledby="modelos-title"
 >
+  <!-- Halo de fondo -->
+  <div
+    class="glow absolute -bottom-80 left-1/2 -z-10 h-160 w-280 -translate-x-1/2 opacity-45"
+    aria-hidden="true"
+  >
+  </div>
+
   <div class="container-page">
     <SectionHeading
       id="modelos-title"
       eyebrow="02 — Modelos de trabajo"
       title="Elige cómo quieres trabajar con nosotros"
       description="Desarrollamos software a tu medida o te damos acceso a plataformas listas para usar. Tú eliges el modelo que mejor se adapta a tu presupuesto y a la etapa de tu negocio."
-      align="center"
+      layout="split"
     />
 
-    <div class="mt-14 grid gap-5 lg:grid-cols-3">
+    <div
+      class="mt-16 grid overflow-hidden rounded-3xl border border-white/10 md:mt-24 lg:grid-cols-3"
+    >
       {
         engagementModels.map((model, index) => {
           const Icon = icons[model.icon];
@@ -28,64 +37,40 @@ import CheckIcon from "./icons/CheckIcon.astro";
           return (
             <article
               class:list={[
-                "relative flex flex-col rounded-2xl p-8",
+                "relative flex flex-col p-8 md:p-10",
+                index > 0 &&
+                  "border-t border-white/10 lg:border-t-0 lg:border-l",
                 featured
-                  ? " bg-primary-800 text-primary-300 shadow-[0_30px_60px_-30px_rgb(0_0_0/0.6)]"
-                  : " bg-primary-950 text-primary-400",
+                  ? "bg-linear-to-b from-primary-800 to-primary-900"
+                  : "bg-primary-950/40",
               ]}
               data-reveal
-              style={`--reveal-delay: ${index * 90}ms`}
             >
-              <div class="flex gap-3 items-center">
-                <div class="flex items-center justify-between gap-4">
-                  <span
-                    class:list={[
-                      "inline-flex size-11 items-center justify-center rounded-xl",
-                      featured
-                        ? "bg-secondary text-primary-950"
-                        : "bg-secondary/10 text-secondary ring-1 ring-secondary/20",
-                    ]}
-                  >
-                    <Icon class="size-5" />
-                  </span>
-                </div>
-
-                <h3
-                  class:list={[
-                    "text-lg md:text-2xl",
-                    featured ? "text-white" : "text-white",
-                  ]}
-                >
+              <div class="flex items-center justify-between gap-4">
+                <span class="font-mono text-xs tracking-[0.14em] text-primary-400 uppercase">
+                  {model.label}
+                </span>
+              </div>
+              <div class=" flex items-center gap-4 mt-6">
+                <Icon class=" size-8 text-secondary" />
+                <h3 class=" text-3xl leading-tight text-white">
                   {model.title}
                 </h3>
               </div>
-              <p class="mt-3 leading-relaxed">{model.description}</p>
+              <p class="mt-4 leading-relaxed text-primary-400">
+                {model.description}
+              </p>
 
-              <ul
-                class:list={[
-                  "mt-6 space-y-3 border-t pt-6",
-                  featured ? "border-white/10" : "border-white/10",
-                ]}
-              >
+              <ul class="mt-8 space-y-3.5 border-t border-white/10 pt-8">
                 {model.features.map((feature) => (
-                  <li
-                    class:list={[
-                      "flex items-start gap-2.5 text-sm",
-                      featured ? "text-primary-200" : "text-primary-300",
-                    ]}
-                  >
-                    <CheckIcon
-                      class:list={[
-                        "mt-0.5 size-4 shrink-0",
-                        featured ? "text-secondary" : "text-secondary",
-                      ]}
-                    />
+                  <li class="flex items-start gap-3 text-[15px] text-primary-300">
+                    <CheckIcon class="mt-0.5 size-4 shrink-0 text-secondary" />
                     {feature}
                   </li>
                 ))}
               </ul>
 
-              <div class="mt-auto pt-8">
+              <div class="mt-auto pt-10">
                 <a
                   href="#contacto"
                   class:list={[

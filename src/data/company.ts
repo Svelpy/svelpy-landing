@@ -1,3 +1,5 @@
+import clientsData from "./clients.json";
+
 export type IconName =
   | "code"
   | "saas"
@@ -228,29 +230,8 @@ export const processSteps: ProcessStep[] = [
 
 // ─── Clientes / Empresas ──────────────────────────────────────────────────────
 
-export const clients: Client[] = [
-  {
-    id: "dulcevizzio",
-    name: "Dulce Vizzio",
-    url: "https://dulcevizzio.com/",
-    company: "Repostería Dulce Vizzio",
-    logo: "/clients/dulcevizzio.webp",
-  },
-  {
-    id: "pinodo",
-    name: "Pinodo",
-    url: "https://pinodo.com/",
-    company: "Pinodo",
-    logo: "/clients/pinodo.webp",
-  },
-  {
-    id: "tupaclub",
-    name: "Tupa Club",
-    url: "https://.farmatupa.com/",
-    company: "Tupa Club",
-    logo: "/clients/tupaclub.webp",
-  },
-];
+// Para añadir un caso: agrega un objeto en clients.json y sube su logo a /public/clients
+export const clients: Client[] = clientsData;
 
 // ─── Valores de la empresa ────────────────────────────────────────────────────
 

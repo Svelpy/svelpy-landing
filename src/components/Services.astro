@@ -2,53 +2,50 @@
 // Services.astro — Sección "Servicios"
 import { services } from "../data/company";
 import SectionHeading from "./SectionHeading.astro";
-import ServiceCard from "./ServiceCard.astro";
+import ServiceRow from "./ServiceRow.astro";
 import ArrowRightIcon from "./icons/ArrowRightIcon.astro";
 ---
 
 <section
   id="servicios"
-  class="bg-primary-950 py-24 md:py-32"
+  class="relative isolate overflow-clip bg-primary-950 py-24 md:py-36"
   aria-labelledby="servicios-title"
 >
-  <div class="container-page">
-    <div
-      class="flex flex-col gap-8 md:flex-row md:items-end md:justify-between"
-    >
-      <SectionHeading
-        id="servicios-title"
-        eyebrow="01 — Servicios"
-        title="Software que se adapta a tu negocio."
-        description="Construimos exactamente lo que tu negocio necesita, con el stack tecnológico más adecuado para cada proyecto."
-      />
-      <a
-        href="#contacto"
-        class="btn btn-outline shrink-0 self-start md:self-auto"
-      >
-        Cotiza tu proyecto
-      </a>
-    </div>
+  <!-- Halo de fondo -->
+  <div
+    class="glow absolute -top-40 -right-72 -z-10 size-160 opacity-50"
+    aria-hidden="true"
+  >
+  </div>
 
-    <div class="mt-14 grid gap-5 md:grid-cols-2">
+  <div class="container-page">
+    <SectionHeading
+      id="servicios-title"
+      eyebrow="01 — Servicios"
+      title="Software que se adapta a tu negocio."
+      description="Construimos exactamente lo que tu negocio necesita, con el stack tecnológico más adecuado para cada proyecto."
+      layout="split"
+    />
+
+    <ul class="mt-16 border-b border-white/10 md:mt-24">
       {
-        services.map((service, index) => (
-          <ServiceCard service={service} index={index} />
+        services.map((service) => (
+          <ServiceRow service={service} />
         ))
       }
-    </div>
+    </ul>
 
-    <p
-      class="mt-10 flex flex-col gap-2 text-primary-400 sm:flex-row sm:items-center sm:justify-center sm:gap-3"
+    <div
+      class="mt-12 flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between"
       data-reveal
     >
-      ¿Tienes una idea que no encaja en estas categorías?
-      <a
-        href="#contacto"
-        class="inline-flex items-center gap-1 font-display font-bold text-white underline decoration-secondary decoration-2 underline-offset-4 transition-colors hover:text-secondary"
-      >
-        Cuéntanos y evaluamos cómo construirla
-        <ArrowRightIcon class="size-4" />
+      <p class="text-lg text-primary-400">
+        ¿Tienes una idea que no encaja en estas categorías?
+      </p>
+      <a href="#contacto" class="btn btn-primary self-start sm:self-auto">
+        Cuéntanos
+        <ArrowRightIcon class="size-5" />
       </a>
-    </p>
+    </div>
   </div>
 </section>

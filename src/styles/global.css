@@ -167,12 +167,35 @@
 
   /* Naranja con texto ciruela: contraste 4.9:1 */
   .btn-primary {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
     background-color: var(--color-secondary);
     color: var(--color-primary-950);
     box-shadow: 0 10px 30px -12px rgb(255 71 36 / 0.65);
 
+    /* Brillo diagonal que cruza el botón al pasar el cursor */
+    &::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      background: linear-gradient(
+        105deg,
+        transparent 35%,
+        rgb(255 255 255 / 0.35) 50%,
+        transparent 65%
+      );
+      transform: translateX(-120%);
+      transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
     &:hover {
       background-color: var(--color-secondary-400);
+
+      &::after {
+        transform: translateX(120%);
+      }
     }
   }
 
@@ -217,14 +240,6 @@
     font-weight: 500;
     letter-spacing: 0.14em;
     text-transform: uppercase;
-
-    &::before {
-      content: "";
-      width: 0.5rem;
-      height: 0.5rem;
-      border-radius: 2px;
-      background-color: var(--color-secondary);
-    }
   }
 
   /* Chips de tecnología / etiquetas */
@@ -264,33 +279,22 @@
   }
 }
 
-/* Animación de entrada: solo oculta contenido cuando hay JS (clase .js en <html>) */
-@keyframes reveal {
-  from {
-    opacity: 0;
-    transform: translateY(18px);
-  }
-  to {
-    opacity: 1;
-    transform: none;
-  }
-}
-
+/* Animaciones (GSAP): solo ocultan contenido cuando hay JS (clase .js en <html>) */
 .js [data-reveal] {
   opacity: 0;
 }
 
-.js [data-reveal].is-visible {
-  animation: reveal 0.7s cubic-bezier(0.16, 1, 0.3, 1) var(--reveal-delay, 0ms) both;
+@media (prefers-reduced-motion: no-preference) {
+  /* Los titulares se muestran cuando SplitText los divide */
+  .js [data-hero-title],
+  .js [data-split] {
+    visibility: hidden;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
   .js [data-reveal] {
     opacity: 1;
-  }
-
-  .js [data-reveal].is-visible {
-    animation: none;
   }
 }
 

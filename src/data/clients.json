@@ -1,0 +1,23 @@
+[
+  {
+    "id": "dulcevizzio",
+    "name": "Dulce Vizzio",
+    "url": "https://dulcevizzio.com/",
+    "company": "Repostería Dulce Vizzio",
+    "logo": "/clients/dulcevizzio.webp"
+  },
+  {
+    "id": "pinodo",
+    "name": "Pinodo",
+    "url": "https://pinodo.com/",
+    "company": "Pinodo",
+    "logo": "/clients/pinodo.webp"
+  },
+  {
+    "id": "tupaclub",
+    "name": "Tupa Club",
+    "url": "https://.farmatupa.com/",
+    "company": "Tupa Club",
+    "logo": "/clients/tupaclub.webp"
+  }
+]
