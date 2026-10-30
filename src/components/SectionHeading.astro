@@ -24,14 +24,14 @@ const dark = tone === "dark";
   class:list={["max-w-2xl", align === "center" && "mx-auto text-center"]}
   data-reveal
 >
-  <p class:list={["eyebrow", dark ? "text-secondary" : "text-secondary-600"]}>
+  <p class="text-secondary">
     {eyebrow}
   </p>
   <h2
     id={id}
     class:list={[
       "mt-4 text-3xl leading-[1.1] sm:text-4xl md:text-5xl",
-      dark ? "text-white" : "text-primary-900",
+      "text-white",
     ]}
   >
     {title}
@@ -41,7 +41,7 @@ const dark = tone === "dark";
       <p
         class:list={[
           "mt-5 text-lg leading-relaxed",
-          dark ? "text-primary-300" : "text-primary-600",
+          dark ? "text-primary-300" : "text-primary-400",
         ]}
       >
         {description}

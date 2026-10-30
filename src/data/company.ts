@@ -229,27 +229,6 @@ export const processSteps: ProcessStep[] = [
 // ─── Clientes / Empresas ──────────────────────────────────────────────────────
 
 export const clients: Client[] = [
-  // {
-  //   id: "oys",
-  //   name: "OyS",
-  //   url: "https://oy-s-frontend.vercel.app/login",
-  //   company: "Universidad Autónoma Gabriel René Moreno (UAGRM)",
-  //   logo: "/clients/oys.webp",
-  // },
-  // {
-  //   id: "certhub",
-  //   name: "CertHub",
-  //   url: "https://cert-hub-frontend.vercel.app",
-  //   company: "Datahub",
-  //   logo: "/clients/certhub.webp",
-  // },
-  // {
-  //   id: "billai",
-  //   name: "BillAI",
-  //   url: "https://bill-ai-frontend.vercel.app",
-  //   company: "Datahub",
-  //   logo: "/clients/billai.webp",
-  // },
   {
     id: "dulcevizzio",
     name: "Dulce Vizzio",
@@ -258,18 +237,18 @@ export const clients: Client[] = [
     logo: "/clients/dulcevizzio.webp",
   },
   {
-    id: "milenium",
-    name: "Milenium",
-    url: "https://mileniumsj-kohl.vercel.app/",
-    company: "Ferretería Milenium",
-    logo: "/clients/milenium.webp",
+    id: "pinodo",
+    name: "Pinodo",
+    url: "https://pinodo.com/",
+    company: "Pinodo",
+    logo: "/clients/pinodo.webp",
   },
   {
-    id: "eduserver",
-    name: "EduServer",
-    url: "https://plataformaeduserver.net/",
-    company: "EduServer",
-    logo: "/clients/eduserver-transparent.webp",
+    id: "tupaclub",
+    name: "Tupa Club",
+    url: "https://.farmatupa.com/",
+    company: "Tupa Club",
+    logo: "/clients/tupaclub.webp",
   },
 ];
 

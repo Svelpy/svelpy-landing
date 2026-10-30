@@ -26,23 +26,23 @@ const summary = [
     <!-- Tabla resumen rápida -->
     <div
       slot="before"
-      class="mb-14 overflow-hidden rounded-2xl border border-primary-200"
+      class="mb-14 overflow-hidden rounded-2xl border border-white/10"
     >
       <h2
-        class="border-b border-primary-200 bg-primary-50 px-6 py-4 text-lg text-primary-900"
+        class="border-b border-white/10 bg-primary-900 px-6 py-4 text-lg text-white"
       >
         Resumen rápido
       </h2>
       <div class="overflow-x-auto">
         <table class="w-full text-left text-sm">
-          <thead class="font-mono text-xs tracking-wider text-primary-600 uppercase">
-            <tr class="border-b border-primary-100">
+          <thead class="font-mono text-xs tracking-wider text-primary-400 uppercase">
+            <tr class="border-b border-white/10">
               <th class="px-6 py-3 font-medium">Tipo</th>
               <th class="px-6 py-3 font-medium">Propósito</th>
               <th class="px-6 py-3 font-medium">Duración</th>
             </tr>
           </thead>
-          <tbody class="divide-y divide-primary-100 text-primary-700">
+          <tbody class="divide-y divide-white/10 text-primary-300">
             {
               summary.map((row) => (
                 <tr>

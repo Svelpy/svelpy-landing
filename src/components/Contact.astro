@@ -5,7 +5,6 @@ import MailIcon from "./icons/MailIcon.astro";
 import MapPinIcon from "./icons/MapPinIcon.astro";
 import WhatsappIcon from "./icons/WhatsappIcon.astro";
 
-const formEndpoint = `https://formsubmit.co/${companyInfo.email}`;
 const serviceOptions = [
   ...services.map((service) => service.title),
   "Suscripción a una plataforma SaaS",
@@ -39,29 +38,33 @@ const nextSteps = [
 ];
 
 const fieldClass =
-  "w-full rounded-lg border border-primary-200 bg-white px-4 py-3 text-primary-900 placeholder:text-primary-500 outline-none transition focus:border-secondary focus:ring-4 focus:ring-secondary/15";
-const labelClass = "mb-2 block text-sm font-medium text-primary-900";
+  "w-full rounded-lg border border-white/10 bg-primary-950 px-4 py-3 text-white placeholder:text-primary-500 outline-none transition focus:border-secondary focus:ring-4 focus:ring-secondary/15";
+const labelClass = "mb-2 block text-sm font-medium text-white";
 ---
 
-<section id="contacto" class="py-24 md:py-32" aria-labelledby="contacto-title">
+<section
+  id="contacto"
+  class="bg-primary-950 py-24 md:py-32"
+  aria-labelledby="contacto-title"
+>
   <div class="container-page">
     <div
-      class="grid overflow-hidden rounded-3xl border border-primary-200 shadow-[0_40px_80px_-40px_rgb(42_24_45/0.35)] lg:grid-cols-[0.85fr_1.15fr]"
+      class="grid overflow-hidden rounded-3xl md:border md:border-white/10 shadow-[0_40px_80px_-40px_rgb(42_24_45/0.35)] lg:grid-cols-[0.85fr_1.15fr]"
       data-reveal
     >
       <!-- Panel informativo -->
       <div
-        class="relative isolate flex flex-col overflow-hidden bg-primary-900 p-8 sm:p-10 lg:p-12"
+        class="relative isolate flex flex-col overflow-hidden bg-primary-950 md:p-8 py-8 lg:p-12"
       >
         <div class="bg-grid-dark absolute inset-0 -z-10" aria-hidden="true">
         </div>
         <div
-          class="glow absolute -right-40 -bottom-40 -z-10 size-112"
+          class="glow absolute right-0 -bottom-40 -z-10 size-112"
           aria-hidden="true"
         >
         </div>
 
-        <p class="eyebrow text-secondary">07 — Contacto</p>
+        <p class="text-secondary">07 — Contacto</p>
         <h2
           id="contacto-title"
           class="mt-4 text-3xl leading-[1.1] text-white sm:text-4xl md:text-5xl"
@@ -121,30 +124,21 @@ const labelClass = "mb-2 block text-sm font-medium text-primary-900";
       </div>
 
       <!-- Formulario de contacto -->
-      <div class="bg-white p-8 sm:p-10 lg:p-12">
-        <h3 class="text-2xl text-primary-900 md:text-3xl">
-          Hablemos de tu proyecto
-        </h3>
-        <p class="mt-3 text-primary-600">
+      <div class="md:bg-primary-900 md:p-8 lg:p-12">
+        <h3 class="text-2xl text-white md:text-3xl">Hablemos de tu proyecto</h3>
+        <p class="mt-3 text-primary-400">
           Completa el formulario y te contactaremos para conocer mejor lo que
           necesita tu empresa.
         </p>
 
         <form
           id="contact-form"
-          action={formEndpoint}
+          action="/api/contact"
           method="POST"
           accept-charset="UTF-8"
           data-email={companyInfo.email}
           class="relative mt-8 grid grid-cols-1 gap-5 md:grid-cols-2"
         >
-          <input
-            type="hidden"
-            name="_subject"
-            value="Nueva consulta desde la web de Svelpy"
-          />
-          <input type="hidden" name="_template" value="table" />
-
           <!-- Honeypot: los usuarios no deben completar este campo. -->
           <div class="absolute -left-2500" aria-hidden="true">
             <label for="company-website">Sitio web</label>
@@ -159,9 +153,8 @@ const labelClass = "mb-2 block text-sm font-medium text-primary-900";
 
           <div>
             <label for="contact-name" class={labelClass}>
-              Nombre y apellido <span
-                class="text-secondary-600"
-                aria-hidden="true">*</span
+              Nombre y apellido <span class="text-secondary" aria-hidden="true"
+                >*</span
               >
             </label>
             <input
@@ -196,7 +189,7 @@ const labelClass = "mb-2 block text-sm font-medium text-primary-900";
 
           <div>
             <label for="contact-email-input" class={labelClass}>
-              Email <span class="text-secondary-600" aria-hidden="true">*</span>
+              Email <span class="text-secondary" aria-hidden="true">*</span>
             </label>
             <input
               id="contact-email-input"
@@ -212,9 +205,7 @@ const labelClass = "mb-2 block text-sm font-medium text-primary-900";
 
           <div>
             <label for="contact-phone" class={labelClass}>
-              Teléfono <span class="text-secondary-600" aria-hidden="true"
-                >*</span
-              >
+              Teléfono <span class="text-secondary" aria-hidden="true">*</span>
             </label>
             <input
               id="contact-phone"
@@ -233,7 +224,7 @@ const labelClass = "mb-2 block text-sm font-medium text-primary-900";
           <div class="md:col-span-2">
             <label for="contact-service" class={labelClass}>
               ¿Qué solución necesitas? <span
-                class="text-secondary-600"
+                class="text-secondary"
                 aria-hidden="true">*</span
               >
             </label>
@@ -253,7 +244,7 @@ const labelClass = "mb-2 block text-sm font-medium text-primary-900";
                 }
               </select>
               <svg
-                class="pointer-events-none absolute top-1/2 right-4 size-4 -translate-y-1/2 text-primary-600"
+                class="pointer-events-none absolute top-1/2 right-4 size-4 -translate-y-1/2 text-primary-400"
                 viewBox="0 0 24 24"
                 fill="none"
                 stroke="currentColor"
@@ -267,24 +258,20 @@ const labelClass = "mb-2 block text-sm font-medium text-primary-900";
 
           <div class="md:col-span-2">
             <label for="contact-details" class={labelClass}>
-              Detalles del proyecto <span
-                class="text-secondary-600"
-                aria-hidden="true">*</span
+              Detalles del proyecto <span class="font-normal text-primary-500"
+                >(opcional)</span
               >
             </label>
             <textarea
               id="contact-details"
               name="detalles"
               rows="5"
-              minlength="20"
               maxlength="2000"
-              required
               aria-describedby="details-help"
               placeholder="Cuéntanos sobre tu empresa, el problema que quieres resolver, objetivos y plazos aproximados."
               class={`${fieldClass} resize-y`}></textarea>
-            <p id="details-help" class="mt-2 text-xs text-primary-600">
-              Mínimo 20 caracteres. No incluyas contraseñas ni información
-              confidencial.
+            <p id="details-help" class="mt-2 text-xs text-primary-400">
+              No incluyas contraseñas ni información confidencial.
             </p>
           </div>
 
@@ -297,13 +284,13 @@ const labelClass = "mb-2 block text-sm font-medium text-primary-900";
                 required
                 class="mt-0.5 size-4 shrink-0 accent-secondary"
               />
-              <span class="text-sm text-primary-600">
+              <span class="text-sm text-primary-400">
                 He leído y acepto la <a
                   href="/privacidad"
-                  class="font-medium text-primary-900 underline underline-offset-4 hover:text-secondary-600"
+                  class="font-medium text-white underline underline-offset-4 hover:text-secondary"
                   >política de privacidad</a
                 > y autorizo el uso de mis datos para responder esta consulta.
-                <span class="text-secondary-600" aria-hidden="true">*</span>
+                <span class="text-secondary" aria-hidden="true">*</span>
               </span>
             </label>
           </div>
@@ -318,14 +305,14 @@ const labelClass = "mb-2 block text-sm font-medium text-primary-900";
             >
               Enviar consulta
             </button>
-            <p class="text-xs text-primary-600">
+            <p class="text-xs text-primary-400">
               Los campos marcados con * son obligatorios.
             </p>
           </div>
 
           <p
             id="contact-status"
-            class="min-h-6 text-sm text-primary-600 md:col-span-2"
+            class="min-h-6 text-sm text-primary-400 md:col-span-2"
             role="status"
             aria-live="polite"
           >
@@ -352,14 +339,10 @@ const labelClass = "mb-2 block text-sm font-medium text-primary-900";
     submitButton.disabled = true;
     submitButton.textContent = "Enviando…";
     status.textContent = "Enviando tu consulta…";
-    status.className = "min-h-6 text-sm text-primary-600 md:col-span-2";
+    status.className = "min-h-6 text-sm text-primary-400 md:col-span-2";
 
     try {
-      const ajaxEndpoint = form.action.replace(
-        "formsubmit.co/",
-        "formsubmit.co/ajax/",
-      );
-      const response = await fetch(ajaxEndpoint, {
+      const response = await fetch(form.action, {
         method: "POST",
         headers: { Accept: "application/json" },
         body: new FormData(form),
@@ -371,12 +354,12 @@ const labelClass = "mb-2 block text-sm font-medium text-primary-900";
       status.textContent =
         "¡Gracias! Recibimos tu consulta y te responderemos pronto.";
       status.className =
-        "min-h-6 text-sm font-semibold text-primary-900 md:col-span-2";
+        "min-h-6 text-sm font-semibold text-white md:col-span-2";
     } catch {
       const email = form.dataset.email;
       status.innerHTML = `No pudimos enviar el mensaje. Inténtalo de nuevo o escríbenos a <a class="underline font-semibold" href="mailto:${email}">${email}</a>.`;
       status.className =
-        "min-h-6 text-sm font-semibold text-secondary-600 md:col-span-2";
+        "min-h-6 text-sm font-semibold text-secondary md:col-span-2";
     } finally {
       submitButton.disabled = false;
       submitButton.textContent = defaultButtonText;

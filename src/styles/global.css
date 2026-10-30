@@ -17,7 +17,7 @@
   --color-primary-950: #1c0f1e; /* fondo de hero y footer */
   --color-primary-900: #2a182d; /* PRIMARIO: titulares, bloques oscuros, botones oscuros */
   --color-primary-800: #3b2540; /* superficies elevadas sobre oscuro */
-  --color-primary-700: #503756; /* texto de párrafo */
+  --color-primary-700: #503756; /* bordes y detalles sobre oscuro */
   --color-primary-600: #6b5170; /* texto atenuado sobre claro */
   --color-primary-500: #8a7490;
   --color-primary-400: #a897ac; /* texto atenuado sobre oscuro */
@@ -76,9 +76,13 @@
     -moz-osx-font-smoothing: grayscale;
   }
 
+  html {
+    color-scheme: dark;
+  }
+
   body {
-    background-color: var(--color-neutral);
-    color: var(--color-primary-700);
+    background-color: var(--color-primary-950);
+    color: var(--color-primary-300);
   }
 
   h1,
@@ -193,12 +197,13 @@
   }
 
   .btn-outline {
-    background-color: var(--color-neutral);
-    border-color: var(--color-primary-200);
-    color: var(--color-primary-900);
+    background-color: rgb(255 255 255 / 0.04);
+    border-color: rgb(255 255 255 / 0.18);
+    color: var(--color-neutral);
 
     &:hover {
-      border-color: var(--color-primary-900);
+      background-color: rgb(255 255 255 / 0.09);
+      border-color: rgb(255 255 255 / 0.32);
     }
   }
 
@@ -227,10 +232,10 @@
     display: inline-flex;
     align-items: center;
     padding: 0.35rem 0.6rem;
-    border: 1px solid var(--color-primary-200);
+    border: 1px solid rgb(255 255 255 / 0.1);
     border-radius: 0.375rem;
-    background-color: var(--color-primary-50);
-    color: var(--color-primary-700);
+    background-color: rgb(255 255 255 / 0.04);
+    color: var(--color-primary-300);
     font-family: var(--font-mono);
     font-size: 0.75rem;
     line-height: 1.2;
@@ -294,12 +299,12 @@
 }
 
 ::-webkit-scrollbar-track {
-  background: var(--color-primary-50);
+  background: var(--color-primary-950);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: var(--color-primary-300);
-  border: 2px solid var(--color-primary-50);
+  background: var(--color-primary-700);
+  border: 2px solid var(--color-primary-950);
   border-radius: 999px;
 }
 

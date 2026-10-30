@@ -8,7 +8,7 @@ import ArrowRightIcon from "./icons/ArrowRightIcon.astro";
 
 <section
   id="servicios"
-  class="py-24 md:py-32"
+  class="bg-primary-950 py-24 md:py-32"
   aria-labelledby="servicios-title"
 >
   <div class="container-page">
@@ -18,26 +18,33 @@ import ArrowRightIcon from "./icons/ArrowRightIcon.astro";
       <SectionHeading
         id="servicios-title"
         eyebrow="01 — Servicios"
-        title="Software que se adapta a tu negocio, no al revés"
+        title="Software que se adapta a tu negocio."
         description="Construimos exactamente lo que tu negocio necesita, con el stack tecnológico más adecuado para cada proyecto."
       />
-      <a href="#contacto" class="btn btn-outline shrink-0 self-start md:self-auto">
+      <a
+        href="#contacto"
+        class="btn btn-outline shrink-0 self-start md:self-auto"
+      >
         Cotiza tu proyecto
       </a>
     </div>
 
     <div class="mt-14 grid gap-5 md:grid-cols-2">
-      {services.map((service, index) => <ServiceCard service={service} index={index} />)}
+      {
+        services.map((service, index) => (
+          <ServiceCard service={service} index={index} />
+        ))
+      }
     </div>
 
     <p
-      class="mt-10 flex flex-col gap-2 text-primary-600 sm:flex-row sm:items-center sm:justify-center sm:gap-3"
+      class="mt-10 flex flex-col gap-2 text-primary-400 sm:flex-row sm:items-center sm:justify-center sm:gap-3"
       data-reveal
     >
       ¿Tienes una idea que no encaja en estas categorías?
       <a
         href="#contacto"
-        class="inline-flex items-center gap-1 font-display font-bold text-primary-900 underline decoration-secondary decoration-2 underline-offset-4 transition-colors hover:text-secondary-600"
+        class="inline-flex items-center gap-1 font-display font-bold text-white underline decoration-secondary decoration-2 underline-offset-4 transition-colors hover:text-secondary"
       >
         Cuéntanos y evaluamos cómo construirla
         <ArrowRightIcon class="size-4" />

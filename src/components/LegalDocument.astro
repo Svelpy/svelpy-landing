@@ -52,11 +52,11 @@ const mailto = `mailto:${companyInfo.email}?subject=${encodeURIComponent(cta.sub
   <div class="space-y-12">
     {
       page.sections.map((section) => (
-        <section class="border-l-2 border-primary-100 pl-6 transition-colors hover:border-secondary md:pl-8">
-          <h2 class="text-xl text-primary-900 md:text-2xl">{section.title}</h2>
+        <section class="border-l-2 border-white/10 pl-6 transition-colors hover:border-secondary md:pl-8">
+          <h2 class="text-xl text-white md:text-2xl">{section.title}</h2>
           <ul class="mt-4 space-y-3">
             {section.content.map((item) => (
-              <li class="flex gap-3 leading-relaxed text-primary-700">
+              <li class="flex gap-3 leading-relaxed text-primary-300">
                 <span
                   class="mt-2.5 size-1.5 shrink-0 rounded-full bg-secondary"
                   aria-hidden="true"
